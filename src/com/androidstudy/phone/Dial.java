@@ -1,4 +1,4 @@
-package com.androidstudy;
+package com.androidstudy.phone;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,11 +8,14 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 
+import com.androidstudy.R;
+
 /**
  * @author Eugene
  * @date 2014-12-3
  */
 public class Dial extends Activity{
+	private static final String TAG = "Dial";
 	private static final String NUM = "10086";
 	private static final String TEL = "tel:";
 
@@ -24,6 +27,7 @@ public class Dial extends Activity{
 		setContentView(R.layout.aty_common_btn);
 		
 		Button btn = (Button) findViewById(R.id.btn);
+		btn.setText(TAG);
 		btn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {

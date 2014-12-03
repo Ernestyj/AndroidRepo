@@ -26,7 +26,8 @@
             </intent-filter>
         </activity>
         <activity android:name="com.androidstudy.MainListActivity"></activity>
-        <activity android:name="com.androidstudy.Dial"></activity>
+        <activity android:name="com.androidstudy.phone.Dial"></activity>
+        <activity android:name="com.androidstudy.phone.SendSMS"></activity>
     </application>
 
 </manifest>

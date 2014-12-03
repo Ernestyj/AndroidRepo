@@ -1,5 +1,8 @@
 package com.androidstudy;
 
+import com.androidstudy.phone.Dial;
+import com.androidstudy.phone.SendSMS;
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -31,6 +34,10 @@ public class MainListActivity extends ListActivity{
 				case 0:
 					startActivity(new Intent(getApplicationContext(), Dial.class));
 					break;
+				case 1:
+					startActivity(new Intent(getApplicationContext(), SendSMS.class));
+					break;
+					
 				default:
 					break;
 				}
