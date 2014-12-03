@@ -22,12 +22,14 @@ public class Dial extends Activity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
 		//去除标题, 必须在setContentView方法前调用
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		
 		setContentView(R.layout.aty_common_btn);
 		
 		Button btn = (Button) findViewById(R.id.btn);
-		btn.setText(TAG);
+		btn.setText(TAG + " to " + NUM);
 		btn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {

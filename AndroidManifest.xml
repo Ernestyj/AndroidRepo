@@ -10,6 +10,10 @@
     
     <!-- 添加拨打电话的权限 -->
     <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <!-- 写入SD卡的权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!-- 读取SD卡的权限 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -28,6 +32,7 @@
         <activity android:name="com.androidstudy.MainListActivity"></activity>
         <activity android:name="com.androidstudy.phone.Dial"></activity>
         <activity android:name="com.androidstudy.phone.SendSMS"></activity>
+        <activity android:name="com.androidstudy.data.DataPath"></activity>
     </application>
 
 </manifest>

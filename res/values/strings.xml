@@ -8,6 +8,7 @@
     <string-array name="aty_list">
         <item>Dial</item>
         <item>SendSMS</item>
+        <item>DataPath</item>
     </string-array>
     
     <string name="btn_clickme">ClickMe</string>

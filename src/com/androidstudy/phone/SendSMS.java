@@ -15,6 +15,7 @@ import com.androidstudy.R;
  * @date 2014-12-3
  */
 public class SendSMS extends Activity{
+	private static final int INTERVAL = 10000;
 	private static final String TAG = "SendSMS";
 	private static final String TOAST_STRING = "每10s发送一次短信到：";
 	private static final String TEXT = "Hello";
@@ -26,7 +27,7 @@ public class SendSMS extends Activity{
 		setContentView(R.layout.aty_common_btn);
 		
 		Button btn = (Button) findViewById(R.id.btn);
-		btn.setText(TAG);
+		btn.setText(TAG + ": " + TEXT + " to " + NUM + " per " + INTERVAL + "ms");
 		btn.setOnClickListener(new View.OnClickListener(){
 			@Override
 			public void onClick(View v) {
@@ -35,8 +36,8 @@ public class SendSMS extends Activity{
 					public void run() {
 						//Send SMS repeatedly
 						while(true){
-							//相当于Thread.sleep(10000)，但无需处理异常
-							SystemClock.sleep(10000);
+							//相当于Thread.sleep()，但无需处理异常
+							SystemClock.sleep(INTERVAL);
 							//短信管理器
 							SmsManager smsManager = SmsManager.getDefault();
 							smsManager.sendTextMessage(NUM, //收件人号码
