@@ -3,15 +3,17 @@ package com.androidstudy.data;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.StatFs;
+import android.text.TextUtils;
 import android.text.format.Formatter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -93,7 +95,7 @@ public class DataPath extends Activity{
 	 * 可写文件：Context.MODE_WORLD_WRITEABLE<br/>
 	 * 可读可写文件：Context.MODE_WORLD_READABLE + Context.MODE_WORLD_WRITEABLE<br/>
 	 */
-	public static void WriteFile2Local(Context context, String data, String fileName, int mode){
+	public static void Write2Local(Context context, String data, String fileName, int mode){
 		try {
 			// 写入到/data/data/包名/files/
 			FileOutputStream fos = context.openFileOutput(fileName, mode);
@@ -112,7 +114,7 @@ public class DataPath extends Activity{
 	 * @param fileName
 	 * @return 返回字符数据
 	 */
-	public static String ReadFileFromLocal(Context context, String fileName){
+	public static String ReadFromLocal(Context context, String fileName){
 		StringBuilder data = new StringBuilder();
 		String path = context.getFilesDir() + fileName;
 		try {
@@ -129,5 +131,43 @@ public class DataPath extends Activity{
 		}
 		return data.toString();
 	}
+	
+	/**写出到SharedPreferences
+	 * @param context
+	 * @param data
+	 * @param fileName
+	 * @param mode 私有文件：Context.MODE_PRIVATE<br/>
+	 * 可读文件：Context.MODE_WORLD_READABLE<br/>
+	 * 可写文件：Context.MODE_WORLD_WRITEABLE<br/>
+	 * 可读可写文件：Context.MODE_WORLD_READABLE + Context.MODE_WORLD_WRITEABLE<br/>
+	 */
+	public static void Write2SharedPrefs(Context context, String data, String fileName, int mode){
+		//SharedPreferences的存储路径/data/data/包名/shared_prefs/
+		SharedPreferences sp = context.getSharedPreferences(fileName, mode);
+		//获取编辑对象
+		Editor edit = sp.edit();
+		//TODO 存储数据示例
+		edit.putString("testKey", data);
+		//提交
+		edit.commit();
+		Toast.makeText(context, "保存成功", Toast.LENGTH_SHORT).show();
+	}
 
+	/**从SharedPreferences读取数据
+	 * @param context
+	 * @param fileName
+	 * @param mode
+	 * @return 返回字符数据
+	 */
+	public static String ReadFromSharedPrefs(Context context, String fileName, int mode){
+		//注意fileName要与写入的文件名相同
+		SharedPreferences sp = context.getSharedPreferences(fileName, mode);
+		//TODO 读取数据示例，注意key与写入时的key相同
+		String data = sp.getString("testKey", null);
+		if(!TextUtils.isEmpty(data)){
+			return data;
+		}else {
+			return null;
+		}
+	}
 }

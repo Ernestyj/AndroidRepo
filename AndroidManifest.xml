@@ -33,6 +33,8 @@
         <activity android:name="com.androidstudy.phone.Dial"></activity>
         <activity android:name="com.androidstudy.phone.SendSMS"></activity>
         <activity android:name="com.androidstudy.data.DataPath"></activity>
+        <activity android:name="com.androidstudy.data.XMLProcess"></activity>
+        <activity android:name="com.androidstudy.data.SQLite"></activity>
     </application>
 
 </manifest>

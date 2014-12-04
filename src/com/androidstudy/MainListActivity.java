@@ -1,6 +1,8 @@
 package com.androidstudy;
 
 import com.androidstudy.data.DataPath;
+import com.androidstudy.data.SQLite;
+import com.androidstudy.data.XMLProcess;
 import com.androidstudy.phone.Dial;
 import com.androidstudy.phone.SendSMS;
 
@@ -40,6 +42,12 @@ public class MainListActivity extends ListActivity{
 					break;
 				case 2:
 					startActivity(new Intent(getApplicationContext(), DataPath.class));
+					break;
+				case 3:
+					startActivity(new Intent(getApplicationContext(), XMLProcess.class));
+					break;
+				case 4:
+					startActivity(new Intent(getApplicationContext(), SQLite.class));
 					break;
 					
 					

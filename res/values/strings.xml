@@ -9,6 +9,8 @@
         <item>Dial</item>
         <item>SendSMS</item>
         <item>DataPath</item>
+        <item>XMLParser</item>
+        <item>SQLite</item>
     </string-array>
     
     <string name="btn_clickme">ClickMe</string>
