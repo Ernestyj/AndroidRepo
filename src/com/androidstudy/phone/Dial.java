@@ -10,7 +10,7 @@ import android.widget.Button;
 
 import com.androidstudy.R;
 
-/**
+/**Dial extends Activity
  * @author Eugene
  * @date 2014-12-3
  */

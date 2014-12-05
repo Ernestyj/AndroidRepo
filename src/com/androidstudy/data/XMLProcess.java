@@ -21,7 +21,7 @@ import android.widget.Toast;
 
 import com.androidstudy.R;
 
-/**
+/**XMLProcess extends Activity
  * @author Eugene
  * @date 2014-12-4
  */
@@ -189,11 +189,16 @@ public class XMLProcess extends Activity{
 	}
 }
 
-/**Person类用于XML解析测试
+/**Person(For test)
  * @author Eugene
  * @date 2014-12-4
  */
 class Person{
+	public static final String COLUMN_ID = "_id";
+	public static final String COLUMN_NAME = "name";
+	public static final String COLUMN_AGE = "age";
+	public static final String TABLE = "person";
+	
 	private int id;
 	private String name;
 	private int age;

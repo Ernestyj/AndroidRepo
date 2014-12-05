@@ -35,6 +35,7 @@
         <activity android:name="com.androidstudy.data.DataPath"></activity>
         <activity android:name="com.androidstudy.data.XMLProcess"></activity>
         <activity android:name="com.androidstudy.data.SQLite"></activity>
+        <activity android:name="com.androidstudy.ui.MyListView"></activity>
     </application>
 
 </manifest>

@@ -11,6 +11,7 @@
         <item>DataPath</item>
         <item>XMLParser</item>
         <item>SQLite</item>
+        <item>MyListView</item>
     </string-array>
     
     <string name="btn_clickme">ClickMe</string>

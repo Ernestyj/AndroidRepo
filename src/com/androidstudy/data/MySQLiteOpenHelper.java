@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 
-/**
+/**MySQLiteOpenHelper extends SQLiteOpenHelper
  * @author Eugene
  * @date 2014-12-4
  */
@@ -40,12 +40,16 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper{
 		db.execSQL(CREATE_TABLE);
 	}
 
-	/**
-	 * 数据库版本更新时回调此方法
+	/**数据库版本更新时回调此方法 
+	 * 更新数据库的内容(删除表, 添加表, 修改表)
 	 */
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		
+		//TODO 测试示例
+		if(oldVersion == 1 && newVersion == 2) {
+			// 在person表中添加一个余额列balance
+			db.execSQL("alter table person add balance integer;");
+		}
 	}
 
 }

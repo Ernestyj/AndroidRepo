@@ -20,7 +20,7 @@ import android.widget.Toast;
 
 import com.androidstudy.R;
 
-/**
+/**DataPath extends Activity(Includes many static methods)
  * @author Eugene
  * @date 2014-12-3
  */

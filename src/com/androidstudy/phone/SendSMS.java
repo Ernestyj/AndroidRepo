@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.androidstudy.R;
 
-/**
+/**SendSMS extends Activity
  * @author Eugene
  * @date 2014-12-3
  */

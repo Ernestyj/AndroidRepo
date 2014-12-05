@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -15,20 +16,21 @@ import android.widget.Toast;
 
 import com.androidstudy.R;
 
-/**
+/**SQLite extends Activity
  * @author Eugene
  * @date 2014-12-4
  */
 public class SQLite extends Activity{
 //	private static final String TAG = "SQLite";
 	private static final String DB_NAME = "person.db";
+	private static final int DB_VERSION = 1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		final PersonDAO dao = new PersonDAO(this, DB_NAME);
+		final PersonDAO dao = new PersonDAO(this, DB_NAME, DB_VERSION);
 		
 		final TextView textView = (TextView) findViewById(R.id.txView);
 		
@@ -40,8 +42,8 @@ public class SQLite extends Activity{
 			public void onClick(View v) {
 				dao.insert(new Person(0, "eugene", 22));
 				dao.insert(new Person(0, "yang", 21));
-				dao.insert(new Person(0, "miemie", 20));
-				dao.insert(new Person(0, "skele", 19));
+				dao.insertV2(new Person(0, "miemie", 20));
+				dao.insertV2(new Person(0, "skele", 19));
 				Toast.makeText(getApplicationContext(), "插入四条数据", Toast.LENGTH_SHORT).show();
 				showAllData(dao, textView);
 			}
@@ -52,7 +54,7 @@ public class SQLite extends Activity{
 		btnUpdate.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				dao.update("ernest", 1);
+				dao.update("ernest", 1);//dao.updateV2("ernest", 1);
 				Toast.makeText(getApplicationContext(), "更新一条数据", Toast.LENGTH_SHORT).show();
 				showAllData(dao, textView);
 			}
@@ -63,7 +65,7 @@ public class SQLite extends Activity{
 		btnDelete.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				dao.delete(3);
+				dao.delete(3);//dao.deleteV2(3);
 				Toast.makeText(getApplicationContext(), "删除一条数据", Toast.LENGTH_SHORT).show();
 				showAllData(dao, textView);
 			}
@@ -83,14 +85,14 @@ public class SQLite extends Activity{
 		btnQuery.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Person p = dao.query(4);
+				Person p = dao.query(4);//Person p = dao.queryV2(4);
 				textView.setText(p.toString());
 			}
 		});
 	}
 	
 	private void showAllData(final PersonDAO dao, final TextView textView) {
-		List<Person> data = dao.queryAll();
+		List<Person> data = dao.queryAll();//List<Person> data = dao.queryAllV2();
 		StringBuilder s = new StringBuilder();
 		for (Person person : data) {
 			s.append(person.toString() + "\n");
@@ -100,6 +102,10 @@ public class SQLite extends Activity{
 }
 
 
+/**PersonDAO(For test)
+ * @author Eugene
+ * @date 2014-12-5
+ */
 class PersonDAO{
 	private static final String INSERT = "insert into person(name, age) values(?, ?);";
 	private static final String DELETE = "delete from person where _id = ?;";
@@ -110,8 +116,8 @@ class PersonDAO{
 	private MySQLiteOpenHelper mSQLiteOpenHelper;
 	private SQLiteDatabase db = null;
 	
-	public PersonDAO(Context context, String dbName){
-		mSQLiteOpenHelper = new MySQLiteOpenHelper(context, dbName, null, 1);
+	public PersonDAO(Context context, String dbName, int version){
+		mSQLiteOpenHelper = new MySQLiteOpenHelper(context, dbName, null,version);
 	}
 	
 	/**插入数据
@@ -129,6 +135,22 @@ class PersonDAO{
 			db.close();
 		}
 	}
+	/**插入数据V2版
+	 * @param person
+	 */
+	public void insertV2(Person person){
+		db = mSQLiteOpenHelper.getWritableDatabase();
+		if(db.isOpen()){
+			//封装数据
+			ContentValues values = new ContentValues();
+			values.put(Person.COLUMN_NAME, person.getName());
+			values.put(Person.COLUMN_AGE, person.getAge());
+			//插入数据，第二个参数为values为null时指定的缺省值
+			db.insert(Person.TABLE, null, values);
+			
+			db.close();
+		}
+	}
 	
 	/**删除数据
 	 * 示例：delete from person where _id = ?;
@@ -138,6 +160,21 @@ class PersonDAO{
 		db = mSQLiteOpenHelper.getWritableDatabase();
 		if(db.isOpen()){
 			db.execSQL(DELETE, new Integer[]{id});
+			db.close();
+		}
+	}
+	/**删除数据V2版
+	 * @param id
+	 */
+	public void deleteV2(int id){
+		db = mSQLiteOpenHelper.getWritableDatabase();
+		if(db.isOpen()){
+			//定义查询字符串
+			String whereClause = "_id = ?";
+			String[] whereArgs = {String.valueOf(id)};
+			//删除数据
+			db.delete(Person.TABLE, whereClause, whereArgs);
+			
 			db.close();
 		}
 	}
@@ -154,6 +191,25 @@ class PersonDAO{
 			db.close();
 		}
 	}
+	/**更新数据V2版
+	 * @param name
+	 * @param id
+	 */
+	public void updateV2(String name, int id){
+		db = mSQLiteOpenHelper.getWritableDatabase();
+		if(db.isOpen()){
+			//封装数据
+			ContentValues values = new ContentValues();
+			values.put(Person.COLUMN_NAME, name);
+			//定义查询字符串
+			String whereClause = "_id = ?";
+			String[] whereArgs = {String.valueOf(id)};
+			db.update(Person.TABLE, values, whereClause, whereArgs);
+			
+			db.close();
+		}
+	}
+	
 	
 	/**查询所有数据
 	 * 示例：select * from person;
@@ -167,21 +223,62 @@ class PersonDAO{
 			List<Person> data = null;
 			//Cursor起始位置为-1
 			Cursor cursor = db.rawQuery(SELECT_ALL, null);
+			//取出数据
 			if (cursor != null && cursor.getCount() > 0) {
 				data = new ArrayList<Person>();
-				int _id = 0, age = 0;
-				String name = null;
 				//游标移动到返回结果的下一条
 				while (cursor.moveToNext()) {
 					//获取第0列数据
-					_id = cursor.getInt(0);
+					int _id = cursor.getInt(0);
 					//获取第2列数据
-					name = cursor.getString(1);
+					String name = cursor.getString(1);
 					//获取第3列数据
-					age = cursor.getInt(2);
+					int age = cursor.getInt(2);
+					
 					data.add(new Person(_id, name, age));
 				}
 			}
+			//关闭cursor防止内存溢出
+			cursor.close();
+			db.close();
+			return data;
+		}
+		return null;
+	}
+	/**查询所有数据V2版
+	 * @return 返回数据列表
+	 */
+	public List<Person> queryAllV2(){
+		//获取只读数据库
+		db = mSQLiteOpenHelper.getReadableDatabase();
+		if (db.isOpen()) {
+			List<Person> data = null;
+			Cursor cursor = null;
+			//列
+			String[] columns = {Person.COLUMN_ID, Person.COLUMN_NAME, Person.COLUMN_AGE};
+			//选择条件为null则查询所有
+			String selection = null;
+			//选择条件对应的参数
+			String[] selectionArgs = null;
+			//分组语句 Ex. group by name，即传入name即可
+			String groupBy = null;
+			//过滤语句
+			String having = null;
+			//排序语句
+			String orderBy = null;
+			cursor = db.query(Person.TABLE, columns, selection, selectionArgs, groupBy, having, orderBy);
+			//取出数据
+			if (cursor != null && cursor.getCount() > 0) {
+				data = new ArrayList<Person>();
+				while (cursor.moveToNext()) {
+					int _id = cursor.getInt(0);
+					String name = cursor.getString(1);
+					int age = cursor.getInt(2);
+					
+					data.add(new Person(_id, name, age));
+				}
+			}
+			cursor.close();
 			db.close();
 			return data;
 		}
@@ -206,10 +303,68 @@ class PersonDAO{
 				name = cursor.getString(1);
 				age = cursor.getInt(2);
 			}
+			cursor.close();
 			db.close();
 			return new Person(_id, name, age);
 		}
 		return null;
 	}
+	/**查询指定的一条数据V2版
+	 * @param id
+	 * @return 返回第一条数据
+	 */
+	public Person queryV2(int id){
+		db = mSQLiteOpenHelper.getReadableDatabase();
+		if (db.isOpen()) {
+			Cursor cursor = null;
+			
+			String[] columns = {Person.COLUMN_ID, Person.COLUMN_NAME, Person.COLUMN_AGE};
+			String selection = "_id = ?";
+			String[] selectionArgs = {String.valueOf(id)};
+			
+			cursor = db.query(Person.TABLE, columns, selection, selectionArgs, null, null, null);
+			
+			int _id = 0, age = 0;
+			String name = null;
+			if (cursor != null && cursor.moveToFirst()) {
+				_id = cursor.getInt(0);
+				name = cursor.getString(1);
+				age = cursor.getInt(2);
+			}
+			cursor.close();
+			db.close();
+			return new Person(_id, name, age);
+		}
+		return null;
+	}
+	
+	/**事务中进行操作（示例）
+	 * 1. 开启事务 db.beginTransaction();
+	 * 2. 标记事务成功 db.setTransactionSuccessful();相当于设置回滚点，可设置多个回滚点
+	 * 3. 停止事务 db.endTransaction();
+	 */
+	public void doInTransaction(){
+		db = mSQLiteOpenHelper.getWritableDatabase();
+		if(db.isOpen()){
+			try {
+				//开启事务
+				db.beginTransaction();
+				//TODO 此处示例要求数据库添加一个balance列  alter table person add balance integer;
+				//1. 从张三账户中扣1000块钱
+				db.execSQL("update person set balance = balance - 1000 where name = 'zhangsan';");
+				//ATM机, 挂掉了.
+				int result = 10 / 0;
+				//2. 向李四账户中加1000块钱
+				db.execSQL("update person set balance = balance + 1000 where name = 'lisi';");
+				//标记事务成功
+				db.setTransactionSuccessful();
+			} finally {
+				// 停止事务
+				db.endTransaction();
+			}
+			db.close();
+		}
+	}
+	
 	
 }

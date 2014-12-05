@@ -5,6 +5,7 @@ import com.androidstudy.data.SQLite;
 import com.androidstudy.data.XMLProcess;
 import com.androidstudy.phone.Dial;
 import com.androidstudy.phone.SendSMS;
+import com.androidstudy.ui.MyListView;
 
 import android.app.ListActivity;
 import android.content.Intent;
@@ -48,6 +49,9 @@ public class MainListActivity extends ListActivity{
 					break;
 				case 4:
 					startActivity(new Intent(getApplicationContext(), SQLite.class));
+					break;
+				case 5:
+					startActivity(new Intent(getApplicationContext(), MyListView.class));
 					break;
 					
 					
