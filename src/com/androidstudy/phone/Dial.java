@@ -11,6 +11,7 @@ import android.widget.Button;
 import com.androidstudy.R;
 
 /**Dial extends Activity
+ * Additional Test: requestWindowFeature(Window.FEATURE_NO_TITLE);
  * @author Eugene
  * @date 2014-12-3
  */
@@ -26,9 +27,10 @@ public class Dial extends Activity{
 		//去除标题, 必须在setContentView方法前调用
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		
-		setContentView(R.layout.aty_common_btn);
+		setContentView(R.layout.activity_main);
 		
-		Button btn = (Button) findViewById(R.id.btn);
+		Button btn = (Button) findViewById(R.id.btn1);
+		btn.setVisibility(View.VISIBLE);
 		btn.setText(TAG + " to " + NUM);
 		btn.setOnClickListener(new View.OnClickListener() {
 			@Override

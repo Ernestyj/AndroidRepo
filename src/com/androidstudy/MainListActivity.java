@@ -1,10 +1,12 @@
 package com.androidstudy;
 
 import com.androidstudy.data.DataPath;
+import com.androidstudy.data.MyContentResolver;
 import com.androidstudy.data.SQLite;
 import com.androidstudy.data.XMLProcess;
+import com.androidstudy.phone.Contact;
 import com.androidstudy.phone.Dial;
-import com.androidstudy.phone.SendSMS;
+import com.androidstudy.phone.SMS;
 import com.androidstudy.ui.MyListView;
 
 import android.app.ListActivity;
@@ -39,7 +41,7 @@ public class MainListActivity extends ListActivity{
 					startActivity(new Intent(getApplicationContext(), Dial.class));
 					break;
 				case 1:
-					startActivity(new Intent(getApplicationContext(), SendSMS.class));
+					startActivity(new Intent(getApplicationContext(), SMS.class));
 					break;
 				case 2:
 					startActivity(new Intent(getApplicationContext(), DataPath.class));
@@ -52,6 +54,12 @@ public class MainListActivity extends ListActivity{
 					break;
 				case 5:
 					startActivity(new Intent(getApplicationContext(), MyListView.class));
+					break;
+				case 6:
+					startActivity(new Intent(getApplicationContext(), MyContentResolver.class));
+					break;
+				case 7:
+					startActivity(new Intent(getApplicationContext(), Contact.class));
 					break;
 					
 					

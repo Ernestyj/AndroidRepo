@@ -137,8 +137,9 @@ class PersonDAO{
 	}
 	/**插入数据V2版
 	 * @param person
+	 * @return 新插入的行ID
 	 */
-	public void insertV2(Person person){
+	public long insertV2(Person person){
 		db = mSQLiteOpenHelper.getWritableDatabase();
 		if(db.isOpen()){
 			//封装数据
@@ -146,10 +147,12 @@ class PersonDAO{
 			values.put(Person.COLUMN_NAME, person.getName());
 			values.put(Person.COLUMN_AGE, person.getAge());
 			//插入数据，第二个参数为values为null时指定的缺省值
-			db.insert(Person.TABLE, null, values);
+			long rowId = db.insert(Person.TABLE, null, values);
 			
 			db.close();
+			return rowId;
 		}
+		return -1;
 	}
 	
 	/**删除数据
@@ -165,18 +168,21 @@ class PersonDAO{
 	}
 	/**删除数据V2版
 	 * @param id
+	 * @return 返回修改成功的行数
 	 */
-	public void deleteV2(int id){
+	public int deleteV2(int id){
 		db = mSQLiteOpenHelper.getWritableDatabase();
 		if(db.isOpen()){
 			//定义查询字符串
 			String whereClause = "_id = ?";
 			String[] whereArgs = {String.valueOf(id)};
 			//删除数据
-			db.delete(Person.TABLE, whereClause, whereArgs);
+			int count = db.delete(Person.TABLE, whereClause, whereArgs);
 			
 			db.close();
+			return count;
 		}
+		return -1;
 	}
 	
 	/**更新数据
@@ -194,8 +200,9 @@ class PersonDAO{
 	/**更新数据V2版
 	 * @param name
 	 * @param id
+	 * @return 返回修改成功的行数
 	 */
-	public void updateV2(String name, int id){
+	public int updateV2(String name, int id){
 		db = mSQLiteOpenHelper.getWritableDatabase();
 		if(db.isOpen()){
 			//封装数据
@@ -204,10 +211,12 @@ class PersonDAO{
 			//定义查询字符串
 			String whereClause = "_id = ?";
 			String[] whereArgs = {String.valueOf(id)};
-			db.update(Person.TABLE, values, whereClause, whereArgs);
+			int count = db.update(Person.TABLE, values, whereClause, whereArgs);
 			
 			db.close();
+			return count;
 		}
+		return -1;
 	}
 	
 	
@@ -353,6 +362,7 @@ class PersonDAO{
 				//1. 从张三账户中扣1000块钱
 				db.execSQL("update person set balance = balance - 1000 where name = 'zhangsan';");
 				//ATM机, 挂掉了.
+				@SuppressWarnings("unused")
 				int result = 10 / 0;
 				//2. 向李四账户中加1000块钱
 				db.execSQL("update person set balance = balance + 1000 where name = 'lisi';");

@@ -44,7 +44,7 @@ public class XMLProcess extends Activity{
 		btnWrite.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				WriteXML2Local(getApplication(), getDataList(), "person.xml");
+				writeXML2Local(getApplication(), getDataList(), "person.xml");
 			}
 		});
 		
@@ -55,7 +55,7 @@ public class XMLProcess extends Activity{
 		btnRead.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				List<Person> data = ParseXMLFromLocal(getApplication(), "person.xml");
+				List<Person> data = parseXMLFromLocal(getApplication(), "person.xml");
 				Log.i(TAG, "ParseXMLFromLocal()");
 				StringBuilder s = new StringBuilder();
 				for (Person person : data) {
@@ -72,7 +72,7 @@ public class XMLProcess extends Activity{
 	 * @param data 列表数据
 	 * @param fileName
 	 */
-	public static <T> void WriteXML2Local(Context context, List<T> data, String fileName){
+	public void writeXML2Local(Context context, List<Person> data, String fileName){
 		try {
 			//获取XML序列化对象
 			XmlSerializer serializer = Xml.newSerializer();
@@ -88,7 +88,7 @@ public class XMLProcess extends Activity{
 			//TODO XML正文
 			// persons
 			serializer.startTag(null, TAG_ROOT);// <persons>
-			for (T t : data) {
+			for (Person t : data) {
 				Person p = (Person) t;
 				// person
 				serializer.startTag(null, TAG_ELE);// <person>
@@ -122,7 +122,7 @@ public class XMLProcess extends Activity{
 	 * @param fileName
 	 * @return 数据列表
 	 */
-	public static <T> List<T> ParseXMLFromLocal(Context context, String fileName){
+	public List<Person> parseXMLFromLocal(Context context, String fileName){
 		try {
 			//获取XMLPull解析器
 			XmlPullParser parser = Xml.newPullParser();
@@ -135,7 +135,7 @@ public class XMLProcess extends Activity{
 			//获取事件类型
 			int eventType = parser.getEventType();
 			//TODO XML正文
-			List<T> data = null;
+			List<Person> data = null;
 			Person p = null;
 			while (eventType != XmlPullParser.END_DOCUMENT) {
 				String tagName = parser.getName();
@@ -144,7 +144,7 @@ public class XMLProcess extends Activity{
 				case XmlPullParser.START_TAG:
 					// <persons>
 					if (tagName.equals(TAG_ROOT)) {
-						data = new ArrayList<T>();
+						data = new ArrayList<Person>();
 					// <person>
 					}else if (tagName.equals(TAG_ELE)) {
 						p = new Person();
@@ -160,7 +160,7 @@ public class XMLProcess extends Activity{
 					break;
 				case XmlPullParser.END_TAG:
 					if (tagName.equals(TAG_ELE)) {
-						data.add((T) p);
+						data.add(p);
 					}
 					break;
 				default:

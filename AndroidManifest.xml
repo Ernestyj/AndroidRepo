@@ -8,10 +8,24 @@
         android:minSdkVersion="8"
         android:targetSdkVersion="18" />
     
+    <!-- 定义ContentProvider读写权限  -->
+    <permission android:name="aa.bb.cc.read" ></permission>
+    <permission android:name="aa.bb.cc.write" ></permission>
+    
     <!-- 添加拨打电话的权限 -->
     <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <!-- 发送SMS的权限 -->
+    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <!-- 读取SMS的权限 -->
+    <uses-permission android:name="android.permission.READ_SMS"/>
+    <!-- 写入SMS的权限 -->
+    <uses-permission android:name="android.permission.WRITE_SMS"/>
     <!-- 写入SD卡的权限 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!-- 读取Contacts的权限 -->
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <!-- 写入Contacts的权限 -->
+    <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
     <!-- 读取SD卡的权限 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
@@ -29,13 +43,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!-- authorities：用于唯一指定，通常可用包名类名  -->
+        <provider android:name="com.androidstudy.data.MyContentProvider"
+            android:authorities="com.androidstudy.data.MyContentProvider"
+            android:readPermission="aa.bb.cc.read"
+            android:writePermission="aa.bb.cc.write" >
+        </provider>
         <activity android:name="com.androidstudy.MainListActivity"></activity>
         <activity android:name="com.androidstudy.phone.Dial"></activity>
-        <activity android:name="com.androidstudy.phone.SendSMS"></activity>
+        <activity android:name="com.androidstudy.phone.SMS"></activity>
         <activity android:name="com.androidstudy.data.DataPath"></activity>
         <activity android:name="com.androidstudy.data.XMLProcess"></activity>
         <activity android:name="com.androidstudy.data.SQLite"></activity>
         <activity android:name="com.androidstudy.ui.MyListView"></activity>
+        <activity android:name="com.androidstudy.data.MyContentResolver"></activity>
+        <activity android:name="com.androidstudy.phone.Contact"></activity>
     </application>
 
 </manifest>

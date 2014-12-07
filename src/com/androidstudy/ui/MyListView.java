@@ -1,7 +1,9 @@
 package com.androidstudy.ui;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -11,11 +13,13 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.androidstudy.R;
 
 /**MyListView extends Activity(View: ex.ListView)
+ * Test: 1. BaseAdapter 2. ArrayAdapter 3. SimpleAdapter
  * @author Eugene
  * @date 2014-12-5
  */
@@ -24,6 +28,7 @@ public class MyListView extends Activity{
 	
 	private ListView mListView = null;
 	private static List<Person> data = null;
+	private ListAdapter mAdapter = null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,15 +43,31 @@ public class MyListView extends Activity{
 		data.add(new Person(4, "mie", 21));
 		data.add(new Person(5, "leo", 22));
 		
-		//BaseAdapter
-		ListAdapter adapter = new MyAdapter();
-		//ArrayAdapter
-		
-		
+		//1. BaseAdapter
+//		mAdapter = new MyAdapter();
+		//2. ArrayAdapter
+//		String[] textArray = {"F1","F2","F3","F4","F5"};
+//		mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, textArray);
+		//3. SimpleAdapter
+		// Test data
+		List<Map<String, Object>> data = new ArrayList<Map<String,Object>>();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("name", "N1");
+		map.put("icon", R.drawable.ic_launcher);
+		data.add(map);
+		map = new HashMap<String, Object>();
+		map.put("name", "N2");
+		map.put("icon", R.drawable.ic_launcher);
+		data.add(map);
+		//SimpleAdapter args
+		int resource = R.layout.listview_item;//listview的子条目的布局的id
+		String[] from = new String[]{"name", "icon"};//数据中的map集合里的key
+		int[] to = new int[]{R.id.tv_listview_item_name, R.id.iv_icon};//resource中的id
+		mAdapter = new SimpleAdapter(this, data, resource, from, to);
 		
 		mListView = (ListView)findViewById(R.id.listview);
 		//把View层对象ListView和控制器Adapter关联起来
-        mListView.setAdapter(adapter);
+        mListView.setAdapter(mAdapter);
 	}
 	
 	/**获取数据列表（测试）

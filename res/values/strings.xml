@@ -7,11 +7,13 @@
     
     <string-array name="aty_list">
         <item>Dial</item>
-        <item>SendSMS</item>
+        <item>SMS</item>
         <item>DataPath</item>
         <item>XMLParser</item>
         <item>SQLite</item>
         <item>MyListView</item>
+        <item>MyContentProviderAndResolver</item>
+        <item>Contact</item>
     </string-array>
     
     <string name="btn_clickme">ClickMe</string>

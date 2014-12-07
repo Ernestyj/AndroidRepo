@@ -21,6 +21,8 @@ import android.widget.Toast;
 import com.androidstudy.R;
 
 /**DataPath extends Activity(Includes many static methods)
+ * Test: getFilesDir(), getCacheDir(), Environment.getDataDirectory(),
+ * 		Environment.getExternalStorageDirectory()
  * @author Eugene
  * @date 2014-12-3
  */
@@ -69,6 +71,7 @@ public class DataPath extends Activity{
 	 * @param path
 	 * @return
 	 */
+	@SuppressWarnings("deprecation")
 	public static String GetMemoryInfo(Context context, File path){
 		//获取磁盘状态对象
 		StatFs stat = new StatFs(path.getPath());
