@@ -4,6 +4,7 @@ import com.androidstudy.data.DataPath;
 import com.androidstudy.data.MyContentResolver;
 import com.androidstudy.data.SQLite;
 import com.androidstudy.data.XMLProcess;
+import com.androidstudy.net.CloudViewer;
 import com.androidstudy.phone.Contact;
 import com.androidstudy.phone.Dial;
 import com.androidstudy.phone.SMS;
@@ -60,6 +61,9 @@ public class MainListActivity extends ListActivity{
 					break;
 				case 7:
 					startActivity(new Intent(getApplicationContext(), Contact.class));
+					break;
+				case 8:
+					startActivity(new Intent(getApplicationContext(), CloudViewer.class));
 					break;
 					
 					

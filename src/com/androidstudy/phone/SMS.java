@@ -11,9 +11,11 @@ import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.ContentObserver;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.SystemClock;
 import android.telephony.SmsManager;
 import android.util.Xml;
@@ -23,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.androidstudy.R;
+import com.androidstudy.data.MyContentObserver;
 
 /**SMS extends Activity
  * @author Eugene
@@ -31,7 +34,8 @@ import com.androidstudy.R;
 public class SMS extends Activity{
 //	private static final String TAG = "SMS";
 	
-	private static final String URI_CONTENT_SMS = "content://sms/";
+	public static final String URI_CONTENT_SMS = "content://sms/";
+	public static final String URI_CONTENT_SMS_OUT = "content://sms/outbox";
 	
 	private static final String TAG_SMSES = "smses";
 	private static final String TAG_SMS = "sms";
@@ -84,6 +88,17 @@ public class SMS extends Activity{
 			public void onClick(View v) {
 				AddSMS(getApplicationContext());
 				textView.setText("Add a SMS to local successfully.");
+			}
+		});
+		
+		Button btnListenSMS = (Button) findViewById(R.id.btn4);
+		btnListenSMS.setVisibility(View.VISIBLE);
+		btnListenSMS.setText("ListenSMS");
+		btnListenSMS.setOnClickListener(new View.OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				ListenSMS(getApplicationContext());
+				textView.setText("Listening SMS.");
 			}
 		});
 	}
@@ -164,6 +179,17 @@ public class SMS extends Activity{
 		}
 		//2.序列化到本地
 		WriteXML2Local(context, data, "sms.xml");
+	}
+	
+	/**监听系统SMS，使用ContentObserver
+	 * @param context
+	 */
+	public static void ListenSMS(Context context){
+		ContentResolver resolver = context.getContentResolver();
+		ContentObserver observer = new MyContentObserver(new Handler());
+		//注册一个内容观察者观察短信数据库
+		resolver.registerContentObserver(Uri.parse(URI_CONTENT_SMS), true, observer);
+		
 	}
 	
 	/**将SMS写成XML保存到本地/data/data/包名/files/

@@ -14,8 +14,16 @@
         <item>MyListView</item>
         <item>MyContentProviderAndResolver</item>
         <item>Contact</item>
+        <item>CloudViewer</item>
     </string-array>
     
     <string name="btn_clickme">ClickMe</string>
-
+    <string name="btn_go">Go</string>
+    <string name="iv_pic">pic</string>
+    
+    <string name="url_default_image" formatted="false">
+        http://e.hiphotos.baidu.com/image/pic/item/a686c9177f3e6709fd0af7f639c79f3df8dc55b4.jpg
+    </string>
+    
+    
 </resources>

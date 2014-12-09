@@ -1,0 +1,46 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity" >
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        <EditText android:id="@+id/et_url"
+            android:layout_width="0dip"
+            android:inputType="textUri"
+            android:text="@string/url_default_image"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:layout_weight="1" />
+        <Button android:id="@+id/btn_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_go"
+            android:textSize="20sp" />
+    </LinearLayout>
+    
+	<ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+        <LinearLayout 
+            android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="vertical" >
+		    <ImageView android:id="@+id/iv_icon"
+		        android:layout_width="match_parent"
+		        android:layout_height="match_parent"
+		        android:contentDescription="@string/iv_pic"
+		        android:scaleType="centerInside"
+		        android:visibility="gone" />
+		    <TextView android:id="@+id/tv_html"
+	            android:layout_width="match_parent"
+	            android:layout_height="match_parent"
+	            android:visibility="gone" />
+	    </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
