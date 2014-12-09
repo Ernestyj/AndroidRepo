@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.androidstudy.R;
+import com.loopj.android.image.SmartImageView;
 
 /**CloudViewer extends Activity
  * Additional example: MyStaticHandler<T extends Activity> extends Handler
@@ -39,6 +40,7 @@ public class CloudViewer extends Activity{
 	private EditText etUrl;
 	private ImageView ivImage;
 	private TextView tvHtml;
+	private SmartImageView mSmartImageView;
 	
 	/**此处为了简便忽略Handler Leak warning
 	 * 消除此警告，可以采用2种方法：
@@ -54,12 +56,18 @@ public class CloudViewer extends Activity{
 			Log.i(TAG, "what = " + msg.what);
 			if(msg.what == SUCCESS_IMG) {
 				//注意：只有原始的线程(主线程/UI线程)才能修改view对象，否则造成CalledFromWrongThreadException
+				//设置可见性
 				tvHtml.setVisibility(View.GONE);
+				mSmartImageView.setVisibility(View.GONE);
 				ivImage.setVisibility(View.VISIBLE);
+				//设置图片
 				ivImage.setImageBitmap((Bitmap) msg.obj);
 			} else if(msg.what == SUCCESS_HTML) {
+				//设置可见性
 				ivImage.setVisibility(View.GONE);
+				mSmartImageView.setVisibility(View.GONE);
 				tvHtml.setVisibility(View.VISIBLE);
+				//设置文本
 				tvHtml.setText((String) msg.obj);
 			}else if(msg.what == ERROR) {
 				Toast.makeText(getApplicationContext(), "获取失败", Toast.LENGTH_LONG).show();
@@ -99,11 +107,12 @@ public class CloudViewer extends Activity{
 		etUrl = (EditText) findViewById(R.id.et_url);
 		ivImage = (ImageView) findViewById(R.id.iv_icon);
 		tvHtml = (TextView) findViewById(R.id.tv_html);
+		mSmartImageView = (SmartImageView) findViewById(R.id.siv_icon);
 		
 		findViewById(R.id.btn_submit).setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				final String url = etUrl.getText().toString();
+				String url = etUrl.getText().toString();
 				//判断是否是图片
 				if(url.contains(".jpg") || url.contains(".jpeg") || url.contains(".bmp") 
 						|| url.contains(".gif") || url.contains(".png")){
@@ -111,7 +120,22 @@ public class CloudViewer extends Activity{
 				}else {
 					getHTML(url);
 				}
-				
+			}
+		});
+		/**SmartImageView使用方法示例
+		 * 引用：android-smart-image-view.jar
+		 */
+		findViewById(R.id.btn_smartImage).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				String url = etUrl.getText().toString();
+				//设置可见性
+				ivImage.setVisibility(View.GONE);
+				tvHtml.setVisibility(View.GONE);
+				mSmartImageView.setVisibility(View.VISIBLE);
+				//非常简洁的异步图片获取：SmartImageView.setImageUrl(url)
+				//设置url即完成图片下载、显示、缓存
+				mSmartImageView.setImageUrl(url);
 			}
 		});
 	}

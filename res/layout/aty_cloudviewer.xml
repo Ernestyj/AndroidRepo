@@ -21,6 +21,11 @@
             android:layout_height="wrap_content"
             android:text="@string/btn_go"
             android:textSize="20sp" />
+        <Button android:id="@+id/btn_smartImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_smartimage"
+            android:textSize="20sp" />
     </LinearLayout>
     
 	<ScrollView
@@ -30,11 +35,18 @@
             android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
 		    android:orientation="vertical" >
+		    <!-- SmartImageView: android-smart-image-view.jar;
+		     	此包可实现非常简洁的异步图片获取：SmartImageView.setImageUrl(url);
+				设置url即可完成图片下载、显示、缓存等 -->
+		    <com.loopj.android.image.SmartImageView android:id="@+id/siv_icon"
+		        android:layout_width="match_parent"
+		        android:layout_height="match_parent"
+		        android:contentDescription="@string/iv_pic"
+		        android:visibility="gone" />
 		    <ImageView android:id="@+id/iv_icon"
 		        android:layout_width="match_parent"
 		        android:layout_height="match_parent"
 		        android:contentDescription="@string/iv_pic"
-		        android:scaleType="centerInside"
 		        android:visibility="gone" />
 		    <TextView android:id="@+id/tv_html"
 	            android:layout_width="match_parent"

@@ -30,6 +30,7 @@
     <string name="hint_password">Password: 123</string>
     <string name="btn_get">Submit(Get)</string>
     <string name="btn_post">Submit(Post)</string>
+    <string name="btn_smartimage">SmartImg</string>
     
     
 </resources>
