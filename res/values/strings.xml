@@ -15,6 +15,7 @@
         <item>MyContentProviderAndResolver</item>
         <item>Contact</item>
         <item>CloudViewer</item>
+        <item>Login(GET/POST)</item>
     </string-array>
     
     <string name="btn_clickme">ClickMe</string>
@@ -24,6 +25,11 @@
     <string name="url_default_image" formatted="false">
         http://e.hiphotos.baidu.com/image/pic/item/a686c9177f3e6709fd0af7f639c79f3df8dc55b4.jpg
     </string>
+    
+    <string name="hint_name">Name: ernest</string>
+    <string name="hint_password">Password: 123</string>
+    <string name="btn_get">Submit(Get)</string>
+    <string name="btn_post">Submit(Post)</string>
     
     
 </resources>

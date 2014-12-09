@@ -61,6 +61,7 @@
         <activity android:name="com.androidstudy.data.MyContentResolver"></activity>
         <activity android:name="com.androidstudy.phone.Contact"></activity>
         <activity android:name="com.androidstudy.net.CloudViewer"></activity>
+        <activity android:name="com.androidstudy.net.Login"></activity>
     </application>
 
 </manifest>

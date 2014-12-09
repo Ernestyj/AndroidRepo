@@ -220,7 +220,7 @@ public class CloudViewer extends Activity{
 			int responseCode = conn.getResponseCode();
 			if(responseCode == 200) {
 				InputStream is = conn.getInputStream();
-				String html = getStringFromInputStream(is);
+				String html = GetStringFromInputStream(is);
 				return html;
 			} else {
 				Log.i(TAG, "Failed: responseCode = " + responseCode);
@@ -236,7 +236,7 @@ public class CloudViewer extends Activity{
 	 * @return 字符数据
 	 * @throws IOException
 	 */
-	private static String getStringFromInputStream(InputStream is) throws IOException {
+	public static String GetStringFromInputStream(InputStream is) throws IOException {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		byte[] buffer = new byte[1024];
 		int len = -1;
@@ -245,13 +245,14 @@ public class CloudViewer extends Activity{
 		}
 		is.close();
 		// 把流中的数据转换成字符串, 采用的编码是UTF-8
-		String html = baos.toString();	
-		if(html.contains("gbk") || html.contains("gb2312")
-				|| html.contains("GBK") || html.contains("GB2312")) {
-			html = new String(baos.toByteArray(), "GBK");
+		String s = baos.toString();	
+		// 非UTF-8，则转码为GBK
+		if(s.contains("gbk") || s.contains("gb2312")
+				|| s.contains("GBK") || s.contains("GB2312")) {
+			s = new String(baos.toByteArray(), "GBK");
 		}
 		baos.close();
-		return html;
+		return s;
 	}
 
 }
