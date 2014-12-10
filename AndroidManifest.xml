@@ -62,6 +62,7 @@
         <activity android:name="com.androidstudy.phone.Contact"></activity>
         <activity android:name="com.androidstudy.net.CloudViewer"></activity>
         <activity android:name="com.androidstudy.net.Login"></activity>
+        <activity android:name="com.androidstudy.demo.sinanews.SinaNews"></activity>
     </application>
 
 </manifest>

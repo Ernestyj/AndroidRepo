@@ -5,8 +5,18 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.http.Header;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -22,7 +32,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 /**Login extends Activity
- * Yest: GET, POST
+ * Test: GET, POST, HttpURLConnection, HttpClient
  * @author Eugene
  * @date 2014-12-9
  */
@@ -57,7 +67,8 @@ public class Login extends Activity{
 				new Runnable() {
 					@Override
 					public void run() {
-						final String state = LoginByGet(userName, password);
+//						final String state = LoginByGet(userName, password);
+						final String state = LoginByGetV2(userName, password);
 						runOnUiThread(new Runnable() {
 							@Override
 							public void run() {
@@ -95,7 +106,8 @@ public class Login extends Activity{
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				final String state = LoginByPost(userName, password);
+//				final String state = LoginByPost(userName, password);
+				final String state = LoginByPostV2(userName, password);
 				runOnUiThread(new Runnable() {
 					@Override
 					public void run() {
@@ -124,11 +136,11 @@ public class Login extends Activity{
         client.post(URL_LOCAL, params, new MyResponseHandler());
 	}
 	
-	/**使用GET的方式登录
+	/**使用GET的方式登录(HttpURLConnection)
 	 * 注意：GET请求的参数应对敏感数据进行编码，URLEncoder.encode();
 	 * @param userName
 	 * @param password
-	 * @return 登录的状态
+	 * @return 登录返回的结果字符
 	 */
 	@SuppressWarnings("deprecation")
 	public static String LoginByGet(String userName, String password) {
@@ -151,7 +163,7 @@ public class Login extends Activity{
 				String state = CloudViewer.GetStringFromInputStream(is);
 				return state;
 			} else {
-				Log.i(TAG, "Disconnect: " + responseCode);
+				Log.i(TAG, "Request fail: " + responseCode);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -163,11 +175,49 @@ public class Login extends Activity{
 		return null;
 	}
 	
-	/**使用POST的方式登录
-	 * 注意：POST方式必须设置conn.setDoOutput(true),允许输出（默认情况下, 系统不允许向服务器输出内容）
+	/**使用GET的方式登录(DefaultHttpClient)
+	 * 注意：GET请求的参数应对敏感数据进行编码，URLEncoder.encode();
 	 * @param userName
 	 * @param password
-	 * @return 登录的状态
+	 * @return 登录返回的结果字符
+	 */
+	@SuppressWarnings("deprecation")
+	public static String LoginByGetV2(String userName, String password) {
+		HttpClient client = null;
+		try {
+			// 定义一个客户端
+			client = new DefaultHttpClient();
+			// 定义一个get请求方法
+			String data = "username=" + URLEncoder.encode(userName) + "&"
+					+ "password=" + URLEncoder.encode(password);
+			HttpGet get = new HttpGet(URL_LOCAL + "?" + data);
+			// response 服务器相应对象, 其中包含了状态信息和服务器返回的数据
+			// 开始执行get方法, 请求网络
+			HttpResponse response = client.execute(get);	
+			// 获得响应码
+			int statusCode = response.getStatusLine().getStatusCode();
+			if(statusCode == 200) {
+				InputStream is = response.getEntity().getContent();
+				String text = CloudViewer.GetStringFromInputStream(is);
+				return text;
+			} else {
+				Log.i(TAG, "Request fail: " + statusCode);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(client != null) {
+				client.getConnectionManager().shutdown();	// 关闭连接, 和释放资源
+			}
+		}
+		return null;
+	}
+	
+	/**使用POST的方式登录(HttpURLConnection)
+	 * 注意：HttpURLConnection POST方式必须设置conn.setDoOutput(true),允许输出（默认情况下, 系统不允许向服务器输出内容）
+	 * @param userName
+	 * @param password
+	 * @return 登录返回的结果字符
 	 */
 	public static String LoginByPost(String userName, String password) {
 		HttpURLConnection conn = null;
@@ -195,7 +245,7 @@ public class Login extends Activity{
 				String state = CloudViewer.GetStringFromInputStream(is);
 				return state;
 			} else {
-				Log.i(TAG, "Disconnect: " + responseCode);
+				Log.i(TAG, "Request fail: " + responseCode);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -206,7 +256,56 @@ public class Login extends Activity{
 		}
 		return null;
 	}
+	
+	/**使用POST的方式登录(DefaultHttpClient)
+	 * @param userName
+	 * @param password
+	 * @return 登录返回的结果字符
+	 */
+	public static String LoginByPostV2(String userName, String password) {
+		HttpClient client = null;
+		try {
+			// 定义一个客户端
+			client = new DefaultHttpClient();
+			// 定义post方法
+			HttpPost post = new HttpPost(URL_LOCAL);
+			// 定义post请求的参数
+			List<NameValuePair> parameters = new ArrayList<NameValuePair>();
+			parameters.add(new BasicNameValuePair("username", userName));
+			parameters.add(new BasicNameValuePair("password", password));
+			// 把post请求的参数再包装一层
+			// 不写编码名称服务器收数据时乱码. 需要指定字符集为utf-8
+			UrlEncodedFormEntity entity = new UrlEncodedFormEntity(parameters, "utf-8");
+			// 设置参数.
+			post.setEntity(entity);
+			// 设置请求头消息
+//			post.addHeader("Content-Length", "20");
+			// 使用客户端执行post方法
+			// 开始执行post请求, 会返回给我们一个HttpResponse对象
+			HttpResponse response = client.execute(post);	
+			// 使用响应对象, 获得状态码, 处理内容
+			int statusCode = response.getStatusLine().getStatusCode();	// 获得状态码
+			if(statusCode == 200) {
+				// 使用响应对象获得实体, 获得输入流
+				InputStream is = response.getEntity().getContent();
+				String text = CloudViewer.GetStringFromInputStream(is);
+				return text;
+			} else {
+				Log.i(TAG, "Request fail: " + statusCode);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(client != null) {
+				client.getConnectionManager().shutdown();	// 关闭连接和释放资源
+			}
+		}
+		return null;
+	}
+	
 }
+
+
 
 /**MyResponseHandler extends AsyncHttpResponseHandler
  * Lib: android-async-http-1.4.4.jar

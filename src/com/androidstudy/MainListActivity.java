@@ -4,6 +4,7 @@ import com.androidstudy.data.DataPath;
 import com.androidstudy.data.MyContentResolver;
 import com.androidstudy.data.SQLite;
 import com.androidstudy.data.XMLProcess;
+import com.androidstudy.demo.sinanews.SinaNews;
 import com.androidstudy.net.CloudViewer;
 import com.androidstudy.net.Login;
 import com.androidstudy.phone.Contact;
@@ -68,6 +69,9 @@ public class MainListActivity extends ListActivity{
 					break;
 				case 9:
 					startActivity(new Intent(getApplicationContext(), Login.class));
+					break;
+				case 10:
+					startActivity(new Intent(getApplicationContext(), SinaNews.class));
 					break;
 					
 					

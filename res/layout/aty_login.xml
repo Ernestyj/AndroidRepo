@@ -19,12 +19,12 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="doGetV2"
+        android:onClick="doGet"
         android:text="@string/btn_get" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="doPostV2"
+        android:onClick="doPost"
         android:text="@string/btn_post" />
 </LinearLayout>
