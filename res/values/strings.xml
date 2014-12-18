@@ -17,6 +17,7 @@
         <item>CloudViewer</item>
         <item>Login(GET/POST)</item>
         <item>Demo SinaNews</item>
+        <item>Download</item>
     </string-array>
     
     <string name="btn_clickme">ClickMe</string>

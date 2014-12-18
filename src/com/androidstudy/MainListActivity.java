@@ -6,6 +6,7 @@ import com.androidstudy.data.SQLite;
 import com.androidstudy.data.XMLProcess;
 import com.androidstudy.demo.sinanews.SinaNews;
 import com.androidstudy.net.CloudViewer;
+import com.androidstudy.net.Download;
 import com.androidstudy.net.Login;
 import com.androidstudy.phone.Contact;
 import com.androidstudy.phone.Dial;
@@ -72,6 +73,9 @@ public class MainListActivity extends ListActivity{
 					break;
 				case 10:
 					startActivity(new Intent(getApplicationContext(), SinaNews.class));
+					break;
+				case 11:
+					startActivity(new Intent(getApplicationContext(), Download.class));
 					break;
 					
 					

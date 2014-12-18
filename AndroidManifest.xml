@@ -63,6 +63,7 @@
         <activity android:name="com.androidstudy.net.CloudViewer"></activity>
         <activity android:name="com.androidstudy.net.Login"></activity>
         <activity android:name="com.androidstudy.demo.sinanews.SinaNews"></activity>
+        <activity android:name="com.androidstudy.net.Download"></activity>
     </application>
 
 </manifest>
