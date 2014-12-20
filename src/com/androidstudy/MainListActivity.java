@@ -22,7 +22,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-/**
+/**MainListActivity extends ListActivity
  * @author Eugene
  * @date 2014-12-3
  */
