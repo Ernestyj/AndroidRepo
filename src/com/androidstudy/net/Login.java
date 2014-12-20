@@ -33,6 +33,7 @@ import com.loopj.android.http.RequestParams;
 
 /**Login extends Activity
  * Test: GET, POST, HttpURLConnection, HttpClient
+ * 包示例：android-async-http-1.4.4.jar: AsyncHttpClient, AsyncHttpResponseHandler, RequestParams
  * @author Eugene
  * @date 2014-12-9
  */
@@ -57,7 +58,7 @@ public class Login extends Activity{
 	}
 	
 	/**开启GET线程
-	 * 指定android:onClick="doGet"时应添加参数(View v)并声明public，否则无法识别
+	 * 注意：指定android:onClick="doGet"时应添加参数(View v)并声明public，否则无法识别；
 	 * @param v
 	 */
 	public void doGet(View v) {
@@ -82,6 +83,7 @@ public class Login extends Activity{
 	/**使用GET的方式登录
 	 * Lib: android-async-http-1.4.4.jar
 	 * android:onClick="doGetV2"
+	 * 注意：指定android:onClick="doGet"时应添加参数(View v)并声明public，否则无法识别；
 	 * @param v
 	 */
 	@SuppressWarnings("deprecation")
@@ -97,7 +99,7 @@ public class Login extends Activity{
 	}
 	
 	/**开启POST线程
-	 * 指定android:onClick="doPost"时应添加参数(View v)并声明public，否则无法识别
+	 * 注意：指定android:onClick="doPost"时应添加参数(View v)并声明public，否则无法识别；
 	 * @param v
 	 */
 	public void doPost(View v) {
@@ -121,6 +123,7 @@ public class Login extends Activity{
 	/**使用Post的方式登录
 	 * Lib: android-async-http-1.4.4.jar
 	 * android:onClick="doPostV2"
+	 * 注意：指定android:onClick="doPost"时应添加参数(View v)并声明public，否则无法识别；
 	 * @param v
 	 */
 	public void doPostV2(View v) {

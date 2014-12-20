@@ -46,6 +46,7 @@ public class DataPath extends Activity{
 		textView.setText("context.getFilesDir(): " + filesDir 
 				+ "\n\n" + "context.getCacheDir(): " + cacheDir 
 				+ "\n\n" + "Environment.getExternalStorageDirectory(): " + externalStorageDirectory
+				+ "\n\n" + "Environment.getExternalStorageDirectory().getPath(): " + externalStorageDirectory.getPath()
 				+ "\n\n" + "Environment.getDataDirectory(): " + dataDirectory
 				+ "\n\n" + "IsSDMounted(): " + IsSDMounted()
 				+ "\n\n" + "GetMemoryInfo(externalStorageDirectory): " + GetMemoryInfo(this, externalStorageDirectory)

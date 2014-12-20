@@ -26,6 +26,7 @@ import com.loopj.android.image.SmartImageView;
 
 /**CloudViewer extends Activity
  * Additional example: MyStaticHandler<T extends Activity> extends Handler
+ * 包示例：android-smart-image-view.jar: SmartImageView
  * 注意：涉及网络操作应开启多线程，避免阻塞主线程造成ANR异常：Android not Responding(应用程序无响应)。
  * 注意：只有原始的线程(主线程/UI线程)才能修改view对象，否则造成CalledFromWrongThreadException.
  * @author Eugene

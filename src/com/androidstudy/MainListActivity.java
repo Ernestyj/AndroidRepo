@@ -15,6 +15,7 @@ import com.androidstudy.ui.MyListView;
 
 import android.app.ListActivity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -76,6 +77,13 @@ public class MainListActivity extends ListActivity{
 					break;
 				case 11:
 					startActivity(new Intent(getApplicationContext(), Download.class));
+					break;
+				case 12:
+					Intent intent = new Intent();
+					intent.setAction("com.androidstudy.find");
+					intent.addCategory(Intent.CATEGORY_DEFAULT);
+					intent.setDataAndType(Uri.parse("Asian:Chinese"), "application/person");
+					startActivity(intent);
 					break;
 					
 					

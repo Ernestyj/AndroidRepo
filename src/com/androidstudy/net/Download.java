@@ -10,13 +10,18 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.androidstudy.MyApplication;
 import com.androidstudy.R;
 
 /**Download extends Activity
+ * 多线程断点下载
  * 注意：网络操作一定要另起线程
  * @author Eugene
  * @date 2014-12-10
@@ -37,15 +42,49 @@ public class Download extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		new Thread(new Runnable() {
+		final TextView textView = (TextView) findViewById(R.id.txView);
+		
+		Button btn1 = (Button) findViewById(R.id.btn1);
+		btn1.setVisibility(View.VISIBLE);
+		btn1.setText("MultiThreadBreakpointDownload-JavaSE");
+		btn1.setOnClickListener(new View.OnClickListener(){
 			@Override
-			public void run() {
-				MultiThreadDownload();
+			public void onClick(View v) {
+				new Thread(new Runnable() {
+					@Override
+					public void run() {
+						MultiThreadDownload();
+					}
+				//注意：start()容易忘记写
+				}).start();
+				textView.setText("Downloading... See log.");
 			}
-		//注意：start()容易忘记写
-		}).start();
+		});
+		
+		Button btn2 = (Button) findViewById(R.id.btn2);
+		btn2.setVisibility(View.VISIBLE);
+		btn2.setText("DownloadWithProgessBar");
+		btn2.setOnClickListener(new View.OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				startActivity(new Intent(getApplicationContext(), DownloadWithProgressBar.class));
+			}
+		});
+		
+		Button btn3 = (Button) findViewById(R.id.btn3);
+		btn3.setVisibility(View.VISIBLE);
+		btn3.setText("DownloadByxUtils");
+		btn3.setOnClickListener(new View.OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				startActivity(new Intent(getApplicationContext(), DownloadByxUtils.class));
+			}
+		});
 	}
 	
+	/**多线程断点下载（JavaSE）
+	 * 保存到getFilesDir()
+	 */
 	public static void MultiThreadDownload(){
 		URL url = null;
 		HttpURLConnection conn = null;
@@ -83,6 +122,7 @@ public class Download extends Activity{
 						endIndex = fileSize - 1;
 					}
 					Log.i(TAG, "Thread " + i + " : " + startIndex + " ~ " + endIndex);
+					
 					new DownloadThread(URL_DOWNLOAD, i, startIndex, endIndex, 
 							threadCount, runningThreadCount).start();
 				}
@@ -95,6 +135,12 @@ public class Download extends Activity{
 	}
 }
 
+/**DownloadThread extends Thread
+ * 断点下载线程（JavaSE）
+ * 保存到getFilesDir()
+ * @author Eugene
+ * @data 2014-12-18
+ */
 class DownloadThread extends Thread {
 	private static final String TAG = "DownloadTest";
 	
@@ -121,57 +167,60 @@ class DownloadThread extends Thread {
 			// 当前线程下载的总大小
 			int total = 0;
 			// 保存下载进度的文件路径
-			File positionFile = new File(MyApplication.GetInstance().getFilesDir(), threadId + ".txt");
+			File logPath = new File(MyApplication.GetInstance().getFilesDir(), threadId + ".txt");
 			
 			URL url = new URL(urlPath);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("GET");
+			
 			// 判断是否有记录，有则接着从上一次的位置继续下载数据
-			if (positionFile.exists() && positionFile.length() > 0) {
-				FileInputStream fis = new FileInputStream(positionFile);
+			if (logPath.exists() && logPath.length() > 0) {
+				FileInputStream fis = new FileInputStream(logPath);
 				BufferedReader br = new BufferedReader(new InputStreamReader(fis));
 				// 获取当前线程上次下载的总大小是多少
 				String lasttotalstr = br.readLine();
 				int lastTotal = Integer.valueOf(lasttotalstr);
 				Log.i(TAG, "Thread " + threadId + " downloaded " + startIndex + " ~ " + endIndex);
 				startIndex += lastTotal;
-				total += lastTotal;// 加上上次下载的总大小。
+				total += lastTotal;// 加上上次下载的总大小，更新total
 				fis.close();
 			}
-
-			conn.setRequestProperty("Range", "bytes=" + startIndex + "-" + endIndex);
 			
+			//设置请求头
+			conn.setRequestProperty("Range", "bytes=" + startIndex + "-" + endIndex);
 			conn.setConnectTimeout(5000);
+			
 			InputStream is = conn.getInputStream();
-			File file = new File(MyApplication.GetInstance().getFilesDir(), "test.dat");
-			RandomAccessFile raf = new RandomAccessFile(file, "rw");
+			File dataPath = new File(MyApplication.GetInstance().getFilesDir(), "test.dat");
+			RandomAccessFile dataFile = new RandomAccessFile(dataPath, "rw");
 			// 指定文件开始写的位置
-			raf.seek(startIndex);
+			dataFile.seek(startIndex);
 			Log.i(TAG, "Thread " + threadId + " writes at: " + startIndex);
 			int len = 0;
-			byte[] buffer = new byte[512];
+			byte[] buffer = new byte[1024];
 			while ((len = is.read(buffer)) != -1) {
-				RandomAccessFile rf = new RandomAccessFile(positionFile, "rwd");
-				raf.write(buffer, 0, len);
+				//写数据
+				dataFile.write(buffer, 0, len);
+				//写进度记录
+				RandomAccessFile logFile = new RandomAccessFile(logPath, "rwd");//rwd模式写入更安全，但是对磁盘损伤大
 				total += len;
-				rf.write(String.valueOf(total).getBytes());
-				rf.close();
+				logFile.write(String.valueOf(total).getBytes());
+				logFile.close();
 			}
 			is.close();
-			raf.close();
-
+			dataFile.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			// 只有所有的线程都下载完毕后 才可以删除记录文件。
-			synchronized (Download.class) {
-				System.out.println("线程" + threadId + "下载完毕了");
+			// 所有的线程都下载完毕后删除记录文件
+			synchronized (DownloadThread.class) {//此处同步锁放置DownloadThread.class有点小问题，记录文件无法被删除
+				Log.i(TAG, "Thread: " + threadId + " successfully done.");
 				runningThreadCount--;
 				if (runningThreadCount < 1) {
-					System.out.println("所有的线程都工作完毕了。删除临时记录的文件");
+					Log.i(TAG, "All thread done. Deleting temp files.");
 					for (int i = 1; i <= threadCount; i++) {
-						File f = new File(i + ".txt");
-						System.out.println(f.delete());
+						File f = new File(MyApplication.GetInstance().getFilesDir(), threadId + ".txt");
+						Log.i(TAG, "Deleted: " + f.delete());
 					}
 				}
 			}

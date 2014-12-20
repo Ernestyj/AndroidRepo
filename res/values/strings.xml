@@ -18,6 +18,7 @@
         <item>Login(GET/POST)</item>
         <item>Demo SinaNews</item>
         <item>Download</item>
+        <item>ImplicitIntent</item>
     </string-array>
     
     <string name="btn_clickme">ClickMe</string>
@@ -33,6 +34,13 @@
     <string name="btn_get">Submit(Get)</string>
     <string name="btn_post">Submit(Post)</string>
     <string name="btn_smartimage">SmartImg</string>
+    <string name="downloadpath">Download to: </string>
+    <string name="et_defaultpath">http://192.168.199.141:8080/SourceInsight.rar</string>
+    <string name="hint_defaultpath">http://192.168.199.141:8080/SourceInsight.rar</string>
+    <string name="threadnumber">"Thread number: "</string>
+    <string name="hint_threadnumber">recommend 3~7</string>
+    <string name="et_threadnumber">3</string>
+    <string name="btn_download">Download</string>
     
     
 </resources>

@@ -5,8 +5,8 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="8"
-        android:targetSdkVersion="18" />
+        android:minSdkVersion="14"
+        android:targetSdkVersion="20" />
     
     <!-- 定义ContentProvider读写权限  -->
     <permission android:name="aa.bb.cc.read" ></permission>
@@ -45,12 +45,28 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <!-- 隐式意图配置  -->
+        <activity android:name="com.androidstudy.ImplicitIntent">
+            <intent-filter>
+                <!-- 自定义并声明动作action为find -->
+	            <action android:name="com.androidstudy.find" />
+	            <!-- 声明类别category -->
+	            <category android:name="android.intent.category.DEFAULT" />
+	            <!-- 自定义并声明数据类型mimeType为application/person -->
+	            <data android:mimeType="application/person" />
+	            <!-- 自定义并声明数据约束规范scheme为Asian -->
+	            <data android:scheme="Asian" />
+            </intent-filter>
+        </activity>
+        
         <!-- authorities：用于唯一指定，通常可用包名类名  -->
         <provider android:name="com.androidstudy.data.MyContentProvider"
             android:authorities="com.androidstudy.data.MyContentProvider"
             android:readPermission="aa.bb.cc.read"
             android:writePermission="aa.bb.cc.write" >
         </provider>
+        
         <activity android:name="com.androidstudy.MainListActivity"></activity>
         <activity android:name="com.androidstudy.phone.Dial"></activity>
         <activity android:name="com.androidstudy.phone.SMS"></activity>
@@ -64,6 +80,8 @@
         <activity android:name="com.androidstudy.net.Login"></activity>
         <activity android:name="com.androidstudy.demo.sinanews.SinaNews"></activity>
         <activity android:name="com.androidstudy.net.Download"></activity>
+        <activity android:name="com.androidstudy.net.DownloadWithProgressBar"></activity>
+        <activity android:name="com.androidstudy.net.DownloadByxUtils"></activity>
     </application>
 
 </manifest>
