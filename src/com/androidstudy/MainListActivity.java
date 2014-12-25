@@ -1,5 +1,6 @@
 package com.androidstudy;
 
+import com.androidstudy.broadcast.SendBroadcast;
 import com.androidstudy.data.DataPath;
 import com.androidstudy.data.MyContentResolver;
 import com.androidstudy.data.SQLite;
@@ -85,7 +86,9 @@ public class MainListActivity extends ListActivity{
 					intent.setDataAndType(Uri.parse("Asian:Chinese"), "application/person");
 					startActivity(intent);
 					break;
-					
+				case 13:
+					startActivity(new Intent(getApplicationContext(), SendBroadcast.class));
+					break;
 					
 				default:
 					break;

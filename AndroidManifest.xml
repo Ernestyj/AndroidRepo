@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.androidstudy"
     android:versionCode="1"
     android:versionName="1.0" >
-
+	<!-- xmlns:tools="http://schemas.android.com/tools"用来配合tools:ignore的使用 -->
+    
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="20" />
@@ -12,30 +14,37 @@
     <permission android:name="aa.bb.cc.read" ></permission>
     <permission android:name="aa.bb.cc.write" ></permission>
     
-    <!-- 添加拨打电话的权限 -->
+    <!-- 拨打电话的权限 -->
     <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <!-- 处理拨出电话的权限 -->
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"/>
     <!-- 发送SMS的权限 -->
     <uses-permission android:name="android.permission.SEND_SMS"/>
+    <!-- 接收SMS的权限 -->
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
     <!-- 读取SMS的权限 -->
     <uses-permission android:name="android.permission.READ_SMS"/>
     <!-- 写入SMS的权限 -->
     <uses-permission android:name="android.permission.WRITE_SMS"/>
     <!-- 写入SD卡的权限 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!-- 读取SD卡的权限 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <!-- 安装/卸载SD卡的权限 -->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
     <!-- 读取Contacts的权限 -->
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
     <!-- 写入Contacts的权限 -->
     <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
-    <!-- 读取SD卡的权限 -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <!-- 访问网络的权限 -->
     <uses-permission android:name="android.permission.INTERNET"/>
 
+    <!-- 去除标题android:theme="@android:style/Theme.Light.NoTitleBar" -->
     <application android:name="com.androidstudy.MyApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@android:style/Theme.Light.NoTitleBar" >
         <activity
             android:name="com.androidstudy.MainActivity"
             android:label="@string/app_name" >
@@ -67,6 +76,29 @@
             android:writePermission="aa.bb.cc.write" >
         </provider>
         
+        <!-- 配置广播接收者 -->
+        <receiver android:name="com.androidstudy.broadcast.OutCallReceiver">
+            <intent-filter>
+                <!-- 配置其动作为外拨电话 -->
+                <action android:name="android.intent.action.NEW_OUTGOING_CALL"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.androidstudy.broadcast.SDStatusReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_UNMOUNTED"/>
+                <action android:name="android.intent.action.MEDIA_REMOVED"/>
+                <!-- 注意设置data scheme为file -->
+               	<data android:scheme="file"></data>
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.androidstudy.broadcast.SMSReceiver">
+            <!-- 设置优先级，可用于按次序接收有序广播 -->
+            <intent-filter android:priority="1000">
+                <!-- 注意Telephony.SMS_RECEIVED动作在4.2+版本不推荐使用，但仍起效 -->
+                <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
+            </intent-filter>
+        </receiver>
+        
         <activity android:name="com.androidstudy.MainListActivity"></activity>
         <activity android:name="com.androidstudy.phone.Dial"></activity>
         <activity android:name="com.androidstudy.phone.SMS"></activity>
@@ -82,6 +114,15 @@
         <activity android:name="com.androidstudy.net.Download"></activity>
         <activity android:name="com.androidstudy.net.DownloadWithProgressBar"></activity>
         <activity android:name="com.androidstudy.net.DownloadByxUtils"></activity>
+        <activity android:name="com.androidstudy.broadcast.SendBroadcast"></activity>
+        <receiver android:name="com.androidstudy.broadcast.MyBroadcastReceiver" 
+            tools:ignore="ExportedReceiver" >
+           <!-- 声明tools:ignore用来消除Warning:Exported receiver does not require permission -->
+           <intent-filter>
+                <action android:name="com.androidstudy.broadcast.send" />
+           </intent-filter>
+        </receiver>
+        
     </application>
 
 </manifest>

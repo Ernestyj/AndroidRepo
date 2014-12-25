@@ -19,6 +19,7 @@
         <item>Demo SinaNews</item>
         <item>Download</item>
         <item>ImplicitIntent</item>
+        <item>SendBroadcast</item>
     </string-array>
     
     <string name="btn_clickme">ClickMe</string>

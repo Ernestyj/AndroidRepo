@@ -24,7 +24,7 @@ public class Dial extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		//去除标题, 必须在setContentView方法前调用
+		//去除标题, 必须在setContentView方法前调用，注意此种方式在初始化界面时仍会闪现一下标题栏
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		
 		setContentView(R.layout.activity_main);
