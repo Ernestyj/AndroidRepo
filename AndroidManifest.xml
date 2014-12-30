@@ -18,6 +18,8 @@
     <uses-permission android:name="android.permission.CALL_PHONE"/>
     <!-- 处理拨出电话的权限 -->
     <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"/>
+    <!-- 读取电话状态的权限 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <!-- 发送SMS的权限 -->
     <uses-permission android:name="android.permission.SEND_SMS"/>
     <!-- 接收SMS的权限 -->
@@ -38,6 +40,10 @@
     <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
     <!-- 访问网络的权限 -->
     <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- 录音的权限 -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <!-- 开机自启动接收的权限 -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <!-- 去除标题android:theme="@android:style/Theme.Light.NoTitleBar" -->
     <application android:name="com.androidstudy.MyApplication"
@@ -115,12 +121,21 @@
         <activity android:name="com.androidstudy.net.DownloadWithProgressBar"></activity>
         <activity android:name="com.androidstudy.net.DownloadByxUtils"></activity>
         <activity android:name="com.androidstudy.broadcast.SendBroadcast"></activity>
+        
+        <service android:name="com.androidstudy.phone.PhoneWiretap"></service>
+        
         <receiver android:name="com.androidstudy.broadcast.MyBroadcastReceiver" 
             tools:ignore="ExportedReceiver" >
            <!-- 声明tools:ignore用来消除Warning:Exported receiver does not require permission -->
            <intent-filter>
                 <action android:name="com.androidstudy.broadcast.send" />
            </intent-filter>
+        </receiver>
+        <receiver android:name="com.androidstudy.broadcast.BootReceiver" >
+            <intent-filter>
+                <!-- 开机自启动action -->
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
         </receiver>
         
     </application>

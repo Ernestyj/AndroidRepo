@@ -20,6 +20,7 @@
         <item>Download</item>
         <item>ImplicitIntent</item>
         <item>SendBroadcast</item>
+        <item>PhoneWiretapService</item>
     </string-array>
     
     <string name="btn_clickme">ClickMe</string>

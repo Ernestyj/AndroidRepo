@@ -11,6 +11,7 @@ import com.androidstudy.net.Download;
 import com.androidstudy.net.Login;
 import com.androidstudy.phone.Contact;
 import com.androidstudy.phone.Dial;
+import com.androidstudy.phone.PhoneWiretap;
 import com.androidstudy.phone.SMS;
 import com.androidstudy.ui.MyListView;
 
@@ -88,6 +89,9 @@ public class MainListActivity extends ListActivity{
 					break;
 				case 13:
 					startActivity(new Intent(getApplicationContext(), SendBroadcast.class));
+					break;
+				case 14:
+					startService(new Intent(getApplicationContext(), PhoneWiretap.class));
 					break;
 					
 				default:
