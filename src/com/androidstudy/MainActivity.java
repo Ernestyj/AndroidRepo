@@ -51,6 +51,7 @@ import android.view.Menu;
  * @data 2014-12-20
  */
 public class MainActivity extends Activity {
+//	private static final String TAG = "MainActivity";
 	//被创建的时候调用的方法 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

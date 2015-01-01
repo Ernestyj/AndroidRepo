@@ -64,7 +64,7 @@
         <!-- 隐式意图配置  -->
         <activity android:name="com.androidstudy.ImplicitIntent">
             <intent-filter>
-                <!-- 自定义并声明动作action为find -->
+                <!-- 自定义并声明动作action为com.androidstudy.find -->
 	            <action android:name="com.androidstudy.find" />
 	            <!-- 声明类别category -->
 	            <category android:name="android.intent.category.DEFAULT" />
@@ -121,15 +121,26 @@
         <activity android:name="com.androidstudy.net.DownloadWithProgressBar"></activity>
         <activity android:name="com.androidstudy.net.DownloadByxUtils"></activity>
         <activity android:name="com.androidstudy.broadcast.SendBroadcast"></activity>
+        <activity android:name="com.androidstudy.service.BeginServiceAty"></activity>
+        <activity android:name="com.androidstudy.service.BeginRemoteServiceAty"></activity>
         
         <service android:name="com.androidstudy.phone.PhoneWiretap"></service>
+        <service android:name="com.androidstudy.service.MainService"></service>
+        <service android:name="com.androidstudy.service.RemoteService" 
+            tools:ignore="ExportedService" >
+            <!-- 声明tools:ignore用来消除Warning:Exported service does not require permission -->
+            <intent-filter >
+                <!-- 自定义并声明动作action为com.androidstudy.service.remoteService -->
+                <action android:name="com.androidstudy.service.remoteService"/>
+            </intent-filter>
+        </service>
         
         <receiver android:name="com.androidstudy.broadcast.MyBroadcastReceiver" 
             tools:ignore="ExportedReceiver" >
-           <!-- 声明tools:ignore用来消除Warning:Exported receiver does not require permission -->
-           <intent-filter>
+            <!-- 声明tools:ignore用来消除Warning:Exported receiver does not require permission -->
+            <intent-filter>
                 <action android:name="com.androidstudy.broadcast.send" />
-           </intent-filter>
+            </intent-filter>
         </receiver>
         <receiver android:name="com.androidstudy.broadcast.BootReceiver" >
             <intent-filter>

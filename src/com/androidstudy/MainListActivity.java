@@ -1,5 +1,14 @@
 package com.androidstudy;
 
+import android.app.ListActivity;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
 import com.androidstudy.broadcast.SendBroadcast;
 import com.androidstudy.data.DataPath;
 import com.androidstudy.data.MyContentResolver;
@@ -13,16 +22,9 @@ import com.androidstudy.phone.Contact;
 import com.androidstudy.phone.Dial;
 import com.androidstudy.phone.PhoneWiretap;
 import com.androidstudy.phone.SMS;
+import com.androidstudy.service.BeginRemoteServiceAty;
+import com.androidstudy.service.BeginServiceAty;
 import com.androidstudy.ui.MyListView;
-
-import android.app.ListActivity;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 /**MainListActivity extends ListActivity
  * @author Eugene
@@ -92,6 +94,12 @@ public class MainListActivity extends ListActivity{
 					break;
 				case 14:
 					startService(new Intent(getApplicationContext(), PhoneWiretap.class));
+					break;
+				case 15:
+					startActivity(new Intent(getApplicationContext(), BeginServiceAty.class));
+					break;
+				case 16:
+					startActivity(new Intent(getApplicationContext(), BeginRemoteServiceAty.class));
 					break;
 					
 				default:
