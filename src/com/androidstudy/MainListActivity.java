@@ -24,6 +24,7 @@ import com.androidstudy.phone.PhoneWiretap;
 import com.androidstudy.phone.SMS;
 import com.androidstudy.service.BeginRemoteServiceAty;
 import com.androidstudy.service.BeginServiceAty;
+import com.androidstudy.ui.LoadBigImage;
 import com.androidstudy.ui.MyListView;
 
 /**MainListActivity extends ListActivity
@@ -100,6 +101,9 @@ public class MainListActivity extends ListActivity{
 					break;
 				case 16:
 					startActivity(new Intent(getApplicationContext(), BeginRemoteServiceAty.class));
+					break;
+				case 17:
+					startActivity(new Intent(getApplicationContext(), LoadBigImage.class));
 					break;
 					
 				default:

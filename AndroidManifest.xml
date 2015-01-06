@@ -123,6 +123,7 @@
         <activity android:name="com.androidstudy.broadcast.SendBroadcast"></activity>
         <activity android:name="com.androidstudy.service.BeginServiceAty"></activity>
         <activity android:name="com.androidstudy.service.BeginRemoteServiceAty"></activity>
+        <activity android:name="com.androidstudy.ui.LoadBigImage"></activity>
         
         <service android:name="com.androidstudy.phone.PhoneWiretap"></service>
         <service android:name="com.androidstudy.service.MainService"></service>

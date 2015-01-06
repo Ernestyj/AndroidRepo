@@ -41,12 +41,12 @@
 		    <com.loopj.android.image.SmartImageView android:id="@+id/siv_icon"
 		        android:layout_width="match_parent"
 		        android:layout_height="match_parent"
-		        android:contentDescription="@string/iv_pic"
+		        android:contentDescription="@string/iv_contentd"
 		        android:visibility="gone" />
 		    <ImageView android:id="@+id/iv_icon"
 		        android:layout_width="match_parent"
 		        android:layout_height="match_parent"
-		        android:contentDescription="@string/iv_pic"
+		        android:contentDescription="@string/iv_contentd"
 		        android:visibility="gone" />
 		    <TextView android:id="@+id/tv_html"
 	            android:layout_width="match_parent"
