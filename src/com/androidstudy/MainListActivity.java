@@ -15,6 +15,8 @@ import com.androidstudy.data.MyContentResolver;
 import com.androidstudy.data.SQLite;
 import com.androidstudy.data.XMLProcess;
 import com.androidstudy.demo.sinanews.SinaNews;
+import com.androidstudy.media.AudioPlayer;
+import com.androidstudy.media.VideoPlayer;
 import com.androidstudy.net.CloudViewer;
 import com.androidstudy.net.Download;
 import com.androidstudy.net.Login;
@@ -24,6 +26,7 @@ import com.androidstudy.phone.PhoneWiretap;
 import com.androidstudy.phone.SMS;
 import com.androidstudy.service.BeginRemoteServiceAty;
 import com.androidstudy.service.BeginServiceAty;
+import com.androidstudy.ui.ImageProcess;
 import com.androidstudy.ui.LoadBigImage;
 import com.androidstudy.ui.MyListView;
 
@@ -104,6 +107,15 @@ public class MainListActivity extends ListActivity{
 					break;
 				case 17:
 					startActivity(new Intent(getApplicationContext(), LoadBigImage.class));
+					break;
+				case 18:
+					startActivity(new Intent(getApplicationContext(), ImageProcess.class));
+					break;
+				case 19:
+					startActivity(new Intent(getApplicationContext(), AudioPlayer.class));
+					break;
+				case 20:
+					startActivity(new Intent(getApplicationContext(), VideoPlayer.class));
 					break;
 					
 				default:

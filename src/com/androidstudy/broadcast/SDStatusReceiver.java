@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
+import com.androidstudy.R;
 
 /**SDStatusReceiver extends BroadcastReceiver
  * 监听SD卡移除/卸载状况

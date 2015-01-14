@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="ButtonStyle">
+        <ignore path="res/layout/aty_audioplayer.xml" />
+        <ignore path="res/layout/aty_videoplayer.xml" />
+    </issue>
+</lint>

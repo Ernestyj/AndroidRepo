@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
+import com.androidstudy.R;
 
 /**MyBroadcastReceiver extends BroadcastReceiver
  * 自定义广播接收示例，广播发送自SendBroadcast.class；

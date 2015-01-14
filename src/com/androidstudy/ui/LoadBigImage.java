@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory.Options;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -27,13 +28,16 @@ public class LoadBigImage extends Activity{
 //	private static final String TAG = "LoadBigImage";
 	
 	ImageView iv;
+	Button btn;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.aty_loadbigimage);
+		setContentView(R.layout.aty_btnandimage);
 		
 		iv = (ImageView) findViewById(R.id.iv);
+		btn = (Button) findViewById(R.id.btn);
+		btn.setText("Load Big Image");
 	}
 	
 	/**Button单击事件处理函数
@@ -45,6 +49,13 @@ public class LoadBigImage extends Activity{
 		}
 	}
 	
+	/**加载大图
+	 * 步骤：
+	 * 		1.得到屏幕的宽高信息；
+	 * 		2.得到图片的宽高；
+	 * 		3.计算缩放比例；
+	 * 		4.缩放加载图片到内存。
+	 */
 	@SuppressWarnings("deprecation")
 	public void loadBigIamge(){
 		//下述方法相当消耗内存资源（根据图片的分辨率而定）

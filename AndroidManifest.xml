@@ -124,6 +124,9 @@
         <activity android:name="com.androidstudy.service.BeginServiceAty"></activity>
         <activity android:name="com.androidstudy.service.BeginRemoteServiceAty"></activity>
         <activity android:name="com.androidstudy.ui.LoadBigImage"></activity>
+        <activity android:name="com.androidstudy.ui.ImageProcess"></activity>
+        <activity android:name="com.androidstudy.media.AudioPlayer"></activity>
+        <activity android:name="com.androidstudy.media.VideoPlayer"></activity>
         
         <service android:name="com.androidstudy.phone.PhoneWiretap"></service>
         <service android:name="com.androidstudy.service.MainService"></service>

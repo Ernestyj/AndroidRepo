@@ -24,11 +24,13 @@
         <item>BeginService</item>
         <item>BeginRemoteService</item>
         <item>LoadBigImage</item>
+        <item>ImageProcess</item>
+        <item>AudioPlayer</item>
+        <item>VideoPlayer</item>
     </string-array>
     
     <string name="btn_clickme">ClickMe</string>
     <string name="btn_go">Go</string>
-    <string name="btn_loadbigimage">Load Big Image</string>
     <string name="iv_contentd">pic</string>
     
     <string name="url_default_image" formatted="false">
@@ -47,6 +49,17 @@
     <string name="hint_threadnumber">recommend 3~7</string>
     <string name="et_threadnumber">3</string>
     <string name="btn_download">Download</string>
+    <string name="hint_mediapath">请输入要播放文件的路径</string>
+    <string name="btn_play">播放</string>
+    <string name="btn_pause">暂停</string>
+    <string name="btn_stop">停止</string>
+    <string name="btn_replay">重播</string>
+    <string name="et_defaltaudio">http://picosong.com/cdn/4f29183e8c64586d6de8c903e80e86ca.mp3</string>
+    <string name="tv_localaudio">Local audio: /data/data/com.androidstudy/files/higirl.mp3</string>
+    <string name="tv_netaudio">Net audio: http://picosong.com/cdn/4f29183e8c64586d6de8c903e80e86ca.mp3</string>
+    <string name="et_defaltvideo">http://dw4.convertfiles.com/files/0462502001421234119/index.3gp</string>
+    <string name="tv_localvideo">Local video: /data/data/com.androidstudy/files/index.3gp</string>
+    <string name="tv_netvideo">Net video: http://dw4.convertfiles.com/files/0462502001421234119/index.3gp</string>
     
     
 </resources>

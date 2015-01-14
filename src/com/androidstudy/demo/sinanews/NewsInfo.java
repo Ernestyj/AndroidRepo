@@ -1,5 +1,7 @@
 package com.androidstudy.demo.sinanews;
 
+import com.androidstudy.R;
+
 /**新闻信息实体类
  * @author andong
  */

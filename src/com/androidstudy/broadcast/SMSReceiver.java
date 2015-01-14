@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.telephony.SmsMessage;
+import com.androidstudy.R;
 
 /**SMSReceiver extends BroadcastReceiver
  * 短信窃听（注意4.4以后版本可能失效）

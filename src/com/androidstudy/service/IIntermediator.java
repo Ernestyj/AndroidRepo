@@ -1,5 +1,7 @@
 package com.androidstudy.service;
 
+import com.androidstudy.R;
+
 /**IIntermediator
  * 中间人接口；
  * @author Eugene

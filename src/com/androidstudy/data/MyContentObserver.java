@@ -1,6 +1,7 @@
 package com.androidstudy.data;
 
 import com.androidstudy.MyApplication;
+import com.androidstudy.R;
 import com.androidstudy.phone.SMS;
 
 import android.content.ContentResolver;
