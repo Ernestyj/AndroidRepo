@@ -7,7 +7,6 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
-import com.androidstudy.R;
 
 /**MyContentProvider extends ContentProvider
  * 注意：使用ContentProvider需要声明并定义其读写权限：

@@ -1,15 +1,14 @@
 package com.androidstudy.data;
 
-import com.androidstudy.MyApplication;
-import com.androidstudy.R;
-import com.androidstudy.phone.SMS;
-
 import android.content.ContentResolver;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Handler;
 import android.util.Log;
+
+import com.androidstudy.MyApplication;
+import com.androidstudy.phone.SMS;
 
 /**MyContentObserver extends ContentObserver
  * @author Eugene

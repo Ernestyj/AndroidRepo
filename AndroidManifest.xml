@@ -44,6 +44,11 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <!-- 开机自启动接收的权限 -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <!-- 开启照相机权限 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    
+    <!-- 声明使用照相机特征 -->
+	<uses-feature android:name="android.hardware.camera" />
 
     <!-- 去除标题android:theme="@android:style/Theme.Light.NoTitleBar" -->
     <application android:name="com.androidstudy.MyApplication"
@@ -127,6 +132,8 @@
         <activity android:name="com.androidstudy.ui.ImageProcess"></activity>
         <activity android:name="com.androidstudy.media.AudioPlayer"></activity>
         <activity android:name="com.androidstudy.media.VideoPlayer"></activity>
+        <activity android:name="com.androidstudy.media.DefaultCamera"></activity>
+        <activity android:name="com.androidstudy.media.CustomCamera"></activity>
         
         <service android:name="com.androidstudy.phone.PhoneWiretap"></service>
         <service android:name="com.androidstudy.service.MainService"></service>

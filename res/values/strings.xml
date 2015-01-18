@@ -27,6 +27,8 @@
         <item>ImageProcess</item>
         <item>AudioPlayer</item>
         <item>VideoPlayer</item>
+        <item>DefaultCamera</item>
+        <item>CustomCamera</item>
     </string-array>
     
     <string name="btn_clickme">ClickMe</string>
@@ -60,6 +62,7 @@
     <string name="et_defaltvideo">http://dw4.convertfiles.com/files/0462502001421234119/index.3gp</string>
     <string name="tv_localvideo">Local video: /data/data/com.androidstudy/files/index.3gp</string>
     <string name="tv_netvideo">Net video: http://dw4.convertfiles.com/files/0462502001421234119/index.3gp</string>
+    <string name="btn_takephoto">Take a photo</string>
     
     
 </resources>

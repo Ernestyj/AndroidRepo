@@ -4,7 +4,6 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.widget.Toast;
-import com.androidstudy.R;
 
 /**RemoteService extends Service
  * （模拟）远程服务示例；

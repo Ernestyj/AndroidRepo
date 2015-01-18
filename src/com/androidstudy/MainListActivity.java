@@ -16,6 +16,8 @@ import com.androidstudy.data.SQLite;
 import com.androidstudy.data.XMLProcess;
 import com.androidstudy.demo.sinanews.SinaNews;
 import com.androidstudy.media.AudioPlayer;
+import com.androidstudy.media.CustomCamera;
+import com.androidstudy.media.DefaultCamera;
 import com.androidstudy.media.VideoPlayer;
 import com.androidstudy.net.CloudViewer;
 import com.androidstudy.net.Download;
@@ -116,6 +118,12 @@ public class MainListActivity extends ListActivity{
 					break;
 				case 20:
 					startActivity(new Intent(getApplicationContext(), VideoPlayer.class));
+					break;
+				case 21:
+					startActivity(new Intent(getApplicationContext(), DefaultCamera.class));
+					break;
+				case 22:
+					startActivity(new Intent(getApplicationContext(), CustomCamera.class));
 					break;
 					
 				default:

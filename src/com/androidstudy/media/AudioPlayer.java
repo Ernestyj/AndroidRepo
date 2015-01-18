@@ -15,7 +15,8 @@ import android.widget.Toast;
 
 import com.androidstudy.R;
 
-/**音频播放（可播放外部、网络音频文件）
+/**AudioPlayer extends Activity
+ * 音频播放（可播放外部、网络音频文件）
  * @author Eugene
  * @data 2015-1-14
  */

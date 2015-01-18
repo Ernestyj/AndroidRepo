@@ -20,7 +20,8 @@ import android.widget.Toast;
 
 import com.androidstudy.R;
 
-/**视频播放（统一采用异步方式，可播放外部、网络音频文件）
+/**VideoPlayer extends Activity
+ * 视频播放（统一采用异步方式，可播放外部、网络音频文件）
  * 双缓冲机制：内部有两个子线程A和B。
  * 		A 解码图像--->前台显示--->解码图像--->前台显示
  * 		B 			    解码图像--->前台显示--->解码图像

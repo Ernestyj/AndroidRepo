@@ -28,7 +28,7 @@ import com.androidstudy.R;
  * @data 2015-1-7
  */
 public class ImageProcess extends Activity{
-//	private static final String TAG = "TemplateAty";
+//	private static final String TAG = "ImageProcess";
 	
 	Bitmap copyBmp, srcBmp, srcBmp2, eraseBmp;
 	ImageView iv1, iv2, iv3;
