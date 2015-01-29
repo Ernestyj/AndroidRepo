@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<link rel="stylesheet" type="text/css" href="metrobootstrap/dist/css/metro-bootstrap.min.css">
+		<link rel="stylesheet" href="metrobootstrap/styles/font-awesome.min.css">
+		<title>metro-bootstrap: Twitter Bootstrap with Metro style</title>
+		<style>
+			.grid .row {
+			    background-color: transparent;
+			    border: 0;
+			    height: 50px;
+			    padding-right: 0;
+			  }
+			  .grid .row .col-md-3 {
+			        min-height: 150px;
+			  }
+			  .grid .row .col-md-6 {
+			        min-height: 300px;
+			  }
+		</style>
+	</head>
+
+	<body>
+		<div class="grid">
+			<div class="row col-md-12">
+				<div class="tile tile-clouds col-md-3 col-xs-12">
+					<a href="#"><h1>社区服务</h1></a>
+				</div>
+				<div class="tile tile-emerald col-md-3 col-xs-12">
+					<div class="tile-content">
+						<div class="tile-icon-large">
+							<img src="img/home.png" height="100" width="100">
+						</div>
+					</div>
+					<span class="tile-label">智慧社区</span>
+				</div>
+				<div class="tile tile-turquoise col-md-3 col-xs-12">
+					<div class="tile-content">
+						<div class="tile-icon-large">
+							<img src="img/nearby.png" height="100" width="100">
+						</div>
+					</div>
+					<span class="tile-label">邻里中心</span>
+				</div>
+				<div class="tile tile-amethyst col-md-3 col-xs-12">
+					<div class="tile-content">
+						<div class="tile-icon-large">
+							<img src="img/nearbycenter.png" height="100" width="100">
+						</div>
+					</div>
+					<span class="tile-label">邻里社交</span>
+				</div>
+			</div>
+			<div class="row col-md-12"></div>
+			<div class="row col-md-12"></div>
+			
+			<div class="row col-md-12">
+				<div class="tile col-md-3 col-xs-12">
+					<div class="tile-content">
+						<div class="tile-icon-large">
+							<img src="img/nearbyactivity.png" height="100" width="100">
+						</div>
+					</div>
+					<span class="tile-label">邻里活动</span>
+				</div>
+				<div class="tile tile-teal col-md-3 col-xs-12">
+					<div class="tile-content">
+						<div class="tile-icon-large">
+							<img src="img/smartmedicare.png" height="100" width="100">
+						</div>
+					</div>
+					<span class="tile-label">社区医院</span>
+				</div>
+				<div class="tile tile-carrot col-md-6 col-xs-12">
+					<div class="tile-content">
+						<div class="tile-icon-large">
+							<img src="img/service.png" height="200" width="200" >
+						</div>
+					</div>
+					<span class="tile-label">服务中心</span>
+				</div>
+			</div>
+			<div class="row col-md-12"></div>
+			<div class="row col-md-12"></div>
+			
+			<div class="row col-md-12">
+				<div class="tile tile-wet-asphalt col-md-3 col-xs-12">
+					<div class="tile-content">
+						<div class="tile-icon-large">
+							<img src="img/food.png" height="100" width="100">
+						</div>
+					</div>
+					<span class="tile-label">送餐服务</span>
+				</div>
+				<div class="tile tile-lime col-md-3 col-xs-12">
+					<div class="tile-content">
+						<div class="tile-icon-large">
+							<img src="img/express.png" height="100" width="100">
+						</div>
+					</div>
+					<span class="tile-label">社区快递</span>
+				</div>
+			</div>
+		</div>
+
+
+
+		<!-- Le javascript
+    ================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script type="text/javascript" src="scripts/vendor/bootstrap.min.js"></script>
+		<script type="text/javascript" src="scripts/metro-docs.js"></script>
+		<script type="text/javascript">
+			var _gaq = _gaq || [];
+			  _gaq.push(['_setAccount', 'UA-36060270-1']);
+			  _gaq.push(['_trackPageview']);
+			
+			  (function() {
+			    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			  })();
+			  
+			  
+			  $('#collapse-sidebar').click(function()
+			  {
+				
+				$('.navbar-side').toggleClass('navbar-side-closed');
+				$('#wrapper').toggleClass('wrapper-full');
+				
+				
+			  });
+		</script>
+
+	</body>
+
+</html>

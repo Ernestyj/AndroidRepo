@@ -12,7 +12,7 @@ import android.widget.Button;
  * @data 2015-1-6
  */
 public class TemplateAty extends Activity{
-//	private static final String TAG = "TemplateAty";
+	static final String TAG = "TemplateAty";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

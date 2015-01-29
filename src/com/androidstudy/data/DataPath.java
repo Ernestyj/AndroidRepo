@@ -41,12 +41,16 @@ public class DataPath extends Activity{
 		//获取SD路径，写入权限 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 		//4.0前不需读入权限，4.0后需读入权限 <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 		File externalStorageDirectory = Environment.getExternalStorageDirectory();
+		File rootDirectory = Environment.getRootDirectory();
 		
 		TextView textView = (TextView) findViewById(R.id.txView);
 		textView.setText("context.getFilesDir(): " + filesDir 
 				+ "\n\n" + "context.getCacheDir(): " + cacheDir 
 				+ "\n\n" + "Environment.getExternalStorageDirectory(): " + externalStorageDirectory
 				+ "\n\n" + "Environment.getExternalStorageDirectory().getPath(): " + externalStorageDirectory.getPath()
+				+ "\n\n" + "Environment.getRootDirectory(): " + rootDirectory
+				+ "\n\n" + "Environment.getRootDirectory().getPath(): " + rootDirectory.getPath()
+				+ "\n\n" + "Environment.getRootDirectory().getAbsolutePath(): " + rootDirectory.getAbsolutePath()
 				+ "\n\n" + "Environment.getDataDirectory(): " + dataDirectory
 				+ "\n\n" + "IsSDMounted(): " + IsSDMounted()
 				+ "\n\n" + "GetMemoryInfo(externalStorageDirectory): " + GetMemoryInfo(this, externalStorageDirectory)

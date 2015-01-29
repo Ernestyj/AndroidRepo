@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:androidstudy="http://schemas.android.com/apk/res/com.androidstudy"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <com.androidstudy.ui.MyAttrView android:id="@+id/myattrview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_launcher"
+        androidstudy:test_id="123"
+        androidstudy:test_msg="@string/app_name"
+        androidstudy:test_bitmap="@drawable/ic_launcher"
+        testAttrs="@drawable/ic_launcher" />
+    
+    <com.androidstudy.ui.MyToggleButton android:id="@+id/togglebtn_blue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        androidstudy:my_on_background="@drawable/switch_on_background"
+        androidstudy:my_off_background="@drawable/switch_off_background"
+        androidstudy:my_slide_btn="@drawable/toggle_button"
+        androidstudy:my_toggle_state="true" />
+    <com.androidstudy.ui.MyToggleButton android:id="@+id/togglebtn_red"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        androidstudy:my_on_background="@drawable/switch_on_background_red"
+        androidstudy:my_off_background="@drawable/switch_off_background_red"
+        androidstudy:my_slide_btn="@drawable/toggle_button"
+        androidstudy:my_toggle_state="false" />
+
+</LinearLayout>

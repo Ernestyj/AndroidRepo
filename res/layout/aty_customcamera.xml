@@ -11,8 +11,8 @@
         android:text="@string/btn_takephoto" />
 
     <FrameLayout android:id="@+id/fl_previewcamera"
-        android:layout_width="200dip"
-        android:layout_height="200dip" />
+        android:layout_width="300dip"
+        android:layout_height="300dip" />
 
     <!-- 
     <ImageView android:id="@+id/iv"

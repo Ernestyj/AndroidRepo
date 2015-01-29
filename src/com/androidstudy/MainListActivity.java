@@ -18,9 +18,12 @@ import com.androidstudy.demo.sinanews.SinaNews;
 import com.androidstudy.media.AudioPlayer;
 import com.androidstudy.media.CustomCamera;
 import com.androidstudy.media.DefaultCamera;
+import com.androidstudy.media.ImageProcess;
+import com.androidstudy.media.LoadBigImage;
 import com.androidstudy.media.VideoPlayer;
 import com.androidstudy.net.CloudViewer;
 import com.androidstudy.net.Download;
+import com.androidstudy.net.JsonAty;
 import com.androidstudy.net.Login;
 import com.androidstudy.phone.Contact;
 import com.androidstudy.phone.Dial;
@@ -28,9 +31,12 @@ import com.androidstudy.phone.PhoneWiretap;
 import com.androidstudy.phone.SMS;
 import com.androidstudy.service.BeginRemoteServiceAty;
 import com.androidstudy.service.BeginServiceAty;
-import com.androidstudy.ui.ImageProcess;
-import com.androidstudy.ui.LoadBigImage;
 import com.androidstudy.ui.MyListView;
+import com.androidstudy.ui.ShowMyUIAty;
+import com.androidstudy.ui.fragment.DynamicFragmentAty;
+import com.androidstudy.ui.fragment.StaticFragmentAty;
+import com.androidstudy.web.MyWebView;
+import com.androidstudy.web.WebViewInteractJS;
 
 /**MainListActivity extends ListActivity
  * @author Eugene
@@ -124,6 +130,24 @@ public class MainListActivity extends ListActivity{
 					break;
 				case 22:
 					startActivity(new Intent(getApplicationContext(), CustomCamera.class));
+					break;
+				case 23:
+					startActivity(new Intent(getApplicationContext(), WebViewInteractJS.class));
+					break;
+				case 24:
+					startActivity(new Intent(getApplicationContext(), MyWebView.class));
+					break;
+				case 25:
+					startActivity(new Intent(getApplicationContext(), StaticFragmentAty.class));
+					break;
+				case 26:
+					startActivity(new Intent(getApplicationContext(), DynamicFragmentAty.class));
+					break;
+				case 27:
+					startActivity(new Intent(getApplicationContext(), ShowMyUIAty.class));
+					break;
+				case 28:
+					startActivity(new Intent(getApplicationContext(), JsonAty.class));
 					break;
 					
 				default:

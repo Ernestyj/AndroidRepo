@@ -29,6 +29,12 @@
         <item>VideoPlayer</item>
         <item>DefaultCamera</item>
         <item>CustomCamera</item>
+        <item>WebViewInteractJS(UseCamera)</item>
+        <item>MyWebView</item>
+        <item>Fragment(Static)</item>
+        <item>TabWithFragment(Dynamic)</item>
+        <item>ShowMyUI</item>
+        <item>JSON</item>
     </string-array>
     
     <string name="btn_clickme">ClickMe</string>
@@ -63,6 +69,12 @@
     <string name="tv_localvideo">Local video: /data/data/com.androidstudy/files/index.3gp</string>
     <string name="tv_netvideo">Net video: http://dw4.convertfiles.com/files/0462502001421234119/index.3gp</string>
     <string name="btn_takephoto">Take a photo</string>
+    <string name="tv_weixin">微信</string>
+    <string name="tv_friend">朋友</string>
+    <string name="tv_contacts">通讯录</string>
+    <string name="tv_setting">设置</string>
+    <string name="tv_fragmentcontent">使用Fragment做主面板</string>
+    <string name="tv_title">我不是微信</string>
     
     
 </resources>

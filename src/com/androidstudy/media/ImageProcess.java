@@ -1,4 +1,4 @@
-package com.androidstudy.ui;
+package com.androidstudy.media;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;

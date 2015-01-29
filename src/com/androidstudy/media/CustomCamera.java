@@ -18,7 +18,7 @@ import com.androidstudy.R;
 
 /**CustomCamera extends Activity
  * 自定义照相机（带预览）；
- * 注意：此次测试失败（无法拍照保存）
+ * 注意：此次测试在虚拟机中无法拍照保存（真机测试通过）
  * 
  * 注意声明权限：
  * 		<!-- 开启照相机权限 -->

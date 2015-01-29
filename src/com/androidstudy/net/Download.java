@@ -21,7 +21,7 @@ import com.androidstudy.MyApplication;
 import com.androidstudy.R;
 
 /**Download extends Activity
- * 多线程断点下载
+ * 多线程断点下载（JavaSE方式）；
  * 注意：网络操作一定要另起线程
  * @author Eugene
  * @date 2014-12-10

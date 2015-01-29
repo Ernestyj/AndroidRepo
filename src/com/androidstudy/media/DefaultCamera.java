@@ -25,7 +25,7 @@ public class DefaultCamera extends Activity{
 	static final int REQUEST_CODE = 100;
 	
 	private ImageView iv;
-	private File file ;
+	private File file;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +60,6 @@ public class DefaultCamera extends Activity{
 		if(requestCode == REQUEST_CODE){
 			iv.setImageURI(Uri.fromFile(file));
 		}
-	
 		super.onActivityResult(requestCode, resultCode, data);
 	}
 

@@ -8,7 +8,7 @@
     
     <uses-sdk
         android:minSdkVersion="14"
-        android:targetSdkVersion="20" />
+        android:targetSdkVersion="21" />
     
     <!-- 定义ContentProvider读写权限  -->
     <permission android:name="aa.bb.cc.read" ></permission>
@@ -128,12 +128,18 @@
         <activity android:name="com.androidstudy.broadcast.SendBroadcast"></activity>
         <activity android:name="com.androidstudy.service.BeginServiceAty"></activity>
         <activity android:name="com.androidstudy.service.BeginRemoteServiceAty"></activity>
-        <activity android:name="com.androidstudy.ui.LoadBigImage"></activity>
-        <activity android:name="com.androidstudy.ui.ImageProcess"></activity>
+        <activity android:name="com.androidstudy.media.LoadBigImage"></activity>
+        <activity android:name="com.androidstudy.media.ImageProcess"></activity>
         <activity android:name="com.androidstudy.media.AudioPlayer"></activity>
         <activity android:name="com.androidstudy.media.VideoPlayer"></activity>
         <activity android:name="com.androidstudy.media.DefaultCamera"></activity>
         <activity android:name="com.androidstudy.media.CustomCamera"></activity>
+        <activity android:name="com.androidstudy.web.WebViewInteractJS"></activity>
+        <activity android:name="com.androidstudy.ui.fragment.StaticFragmentAty"></activity>
+        <activity android:name="com.androidstudy.web.MyWebView"></activity>
+        <activity android:name="com.androidstudy.ui.fragment.DynamicFragmentAty"></activity>
+        <activity android:name="com.androidstudy.ui.ShowMyUIAty"></activity>
+        <activity android:name="com.androidstudy.net.JsonAty"></activity>
         
         <service android:name="com.androidstudy.phone.PhoneWiretap"></service>
         <service android:name="com.androidstudy.service.MainService"></service>
