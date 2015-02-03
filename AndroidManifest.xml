@@ -88,10 +88,12 @@
         </provider>
         
         <!-- 配置广播接收者 -->
-        <receiver android:name="com.androidstudy.broadcast.OutCallReceiver">
+        <receiver android:name="com.androidstudy.broadcast.OutCallReceiver"
+            tools:ignore="ExportedReceiver"  >
+            <!-- 声明tools:ignore用来消除Warning:Exported service does not require permission -->
             <intent-filter>
-                <!-- 配置其动作为外拨电话 -->
-                <action android:name="android.intent.action.NEW_OUTGOING_CALL"/>
+                <!-- 配置其动作为外拨电话（此项开启将执行IP拨号助手，导致拨号添加默认前缀0797） -->
+                <!-- <action android:name="android.intent.action.NEW_OUTGOING_CALL"/> -->
             </intent-filter>
         </receiver>
         <receiver android:name="com.androidstudy.broadcast.SDStatusReceiver">
@@ -159,10 +161,12 @@
                 <action android:name="com.androidstudy.broadcast.send" />
             </intent-filter>
         </receiver>
-        <receiver android:name="com.androidstudy.broadcast.BootReceiver" >
+        <receiver android:name="com.androidstudy.broadcast.BootReceiver"
+            tools:ignore="ExportedReceiver"  >
+            <!-- 声明tools:ignore用来消除Warning:Exported service does not require permission -->
             <intent-filter>
                 <!-- 开机自启动action -->
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <!-- <action android:name="android.intent.action.BOOT_COMPLETED" /> -->
             </intent-filter>
         </receiver>
         

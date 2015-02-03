@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 
 /**OutCallReceiver extends BroadcastReceiver
- * IP拨号助手；
+ * IP拨号助手（此测试会引起真机拨号添加前缀，默认下注释其在xml中的配置）；
  * 注意配置广播接收者：
  * 		<!-- 配置广播接收者 -->
         <receiver android:name="com.androidstudy.broadcast.OutCallReceiver">
