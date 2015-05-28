@@ -24,6 +24,7 @@ import com.androidstudy.R;
 public class MyWebView extends Activity{
 //	private static final String TAG = "MyWebView";
 	
+	private static final String URL = "file:///android_asset/dashboard.html";
 	private WebView webView = null;
 	private ProgressDialog pd = null;
 	
@@ -75,7 +76,7 @@ public class MyWebView extends Activity{
 			}
 		});
 		
-		webView.loadUrl("file:///android_asset/dashboard.html");
+		webView.loadUrl(URL);
 	}
 
 	//回退按键事件处理
