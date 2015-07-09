@@ -35,6 +35,7 @@
         <item>TabWithFragment(Dynamic)</item>
         <item>ShowMyUI</item>
         <item>JSON</item>
+        <item>TempTest</item>
     </string-array>
     
     <string name="btn_clickme">ClickMe</string>

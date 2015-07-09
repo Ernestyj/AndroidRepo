@@ -113,6 +113,7 @@
         </receiver>
         
         <activity android:name="com.androidstudy.MainListActivity"></activity>
+        <activity android:name="com.androidstudy.TempTestActivity"></activity>
         <activity android:name="com.androidstudy.phone.Dial"></activity>
         <activity android:name="com.androidstudy.phone.SMS"></activity>
         <activity android:name="com.androidstudy.data.DataPath"></activity>

@@ -149,6 +149,9 @@ public class MainListActivity extends ListActivity{
 				case 28:
 					startActivity(new Intent(getApplicationContext(), JsonAty.class));
 					break;
+				case 29:
+					startActivity(new Intent(getApplicationContext(), TempTestActivity.class));
+					break;
 					
 				default:
 					break;
