@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
@@ -13,6 +14,9 @@ import com.mvpstudy.login.presentation.presenters.LoginPresenterImpl;
 import com.mvpstudy.login.presentation.views.LoginView;
 import com.mvpstudy.main.MainActivity;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 /**
  * LoginActivity
  *
@@ -20,21 +24,25 @@ import com.mvpstudy.main.MainActivity;
  * @date 9/12/2015
  */
 public class LoginActivity extends Activity implements LoginView, View.OnClickListener {
-    private LoginPresenter presenter;
-
+    @Bind(R.id.username)
+    EditText username;
+    @Bind(R.id.password)
+    EditText password;
+    @Bind(R.id.button)
+    Button button;
+    @Bind(R.id.progress)
     private ProgressBar progressBar;
-    private EditText username;
-    private EditText password;
+
+    private LoginPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        progressBar = (ProgressBar) findViewById(R.id.progress);
-        username = (EditText) findViewById(R.id.username);
-        password = (EditText) findViewById(R.id.password);
-        findViewById(R.id.button).setOnClickListener(this);
+        ButterKnife.bind(this);
+
+        button.setOnClickListener(this);
 
         presenter = new LoginPresenterImpl(this);
     }
