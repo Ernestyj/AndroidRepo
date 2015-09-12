@@ -8,7 +8,7 @@
         android:layout_height="wrap_content"  
         android:layout_centerVertical="true"
         android:contentDescription="@string/iv_contentd"  
-        android:background="@drawable/title_bar" />  
+        android:background="@drawable/title_bar" />
   
     <TextView  
         android:layout_width="fill_parent"  

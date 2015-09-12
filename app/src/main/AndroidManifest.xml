@@ -8,7 +8,7 @@
     
     <uses-sdk
         android:minSdkVersion="14"
-        android:targetSdkVersion="21" />
+        android:targetSdkVersion="19" />
     
     <!-- 定义ContentProvider读写权限  -->
     <permission android:name="aa.bb.cc.read" ></permission>
@@ -91,10 +91,10 @@
         <receiver android:name="com.androidstudy.broadcast.OutCallReceiver"
             tools:ignore="ExportedReceiver"  >
             <!-- 声明tools:ignore用来消除Warning:Exported service does not require permission -->
-            <intent-filter>
+            <!--<intent-filter>-->
                 <!-- 配置其动作为外拨电话（此项开启将执行IP拨号助手，导致拨号添加默认前缀0797） -->
                 <!-- <action android:name="android.intent.action.NEW_OUTGOING_CALL"/> -->
-            </intent-filter>
+            <!--</intent-filter>-->
         </receiver>
         <receiver android:name="com.androidstudy.broadcast.SDStatusReceiver">
             <intent-filter>
@@ -165,10 +165,10 @@
         <receiver android:name="com.androidstudy.broadcast.BootReceiver"
             tools:ignore="ExportedReceiver"  >
             <!-- 声明tools:ignore用来消除Warning:Exported service does not require permission -->
-            <intent-filter>
+            <!--<intent-filter>-->
                 <!-- 开机自启动action -->
                 <!-- <action android:name="android.intent.action.BOOT_COMPLETED" /> -->
-            </intent-filter>
+            <!--</intent-filter>-->
         </receiver>
         
     </application>
