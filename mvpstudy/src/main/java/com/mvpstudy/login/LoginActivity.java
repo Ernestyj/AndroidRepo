@@ -16,6 +16,7 @@ import com.mvpstudy.main.MainActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * LoginActivity
@@ -31,7 +32,7 @@ public class LoginActivity extends Activity implements LoginView, View.OnClickLi
     @Bind(R.id.button)
     Button button;
     @Bind(R.id.progress)
-    private ProgressBar progressBar;
+    ProgressBar progressBar;
 
     private LoginPresenter presenter;
 
@@ -41,8 +42,6 @@ public class LoginActivity extends Activity implements LoginView, View.OnClickLi
         setContentView(R.layout.activity_login);
 
         ButterKnife.bind(this);
-
-        button.setOnClickListener(this);
 
         presenter = new LoginPresenterImpl(this);
     }
@@ -74,6 +73,7 @@ public class LoginActivity extends Activity implements LoginView, View.OnClickLi
     }
 
     @Override
+    @OnClick(R.id.button)
     public void onClick(View v) {
         presenter.validateCredentials(username.getText().toString(), password.getText().toString());
     }

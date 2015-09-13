@@ -1,1 +1,1 @@
-include ':app', ':myframework', ':mvpstudy'
+include ':app', ':myframework', ':mvpstudy', ':daggerstudy'
