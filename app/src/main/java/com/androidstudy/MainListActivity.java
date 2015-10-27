@@ -16,6 +16,7 @@ import com.androidstudy.data.SQLite;
 import com.androidstudy.data.XMLProcess;
 import com.androidstudy.demo.sinanews.SinaNews;
 import com.androidstudy.media.AudioPlayer;
+import com.androidstudy.media.AudioRecorderAty;
 import com.androidstudy.media.CustomCamera;
 import com.androidstudy.media.DefaultCamera;
 import com.androidstudy.media.ImageProcess;
@@ -152,7 +153,10 @@ public class MainListActivity extends ListActivity{
 				case 29:
 					startActivity(new Intent(getApplicationContext(), TempTestActivity.class));
 					break;
-					
+				case 30:
+					startActivity(new Intent(getApplicationContext(), AudioRecorderAty.class));
+					break;
+
 				default:
 					break;
 				}
