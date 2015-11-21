@@ -156,6 +156,7 @@
         <activity android:name="com.androidstudy.media.AudioRecorderAty"></activity>
         <activity android:name="com.androidstudy.qrcode.activity.CaptureActivity"></activity>
         <activity android:name="com.androidstudy.qrcode.activity.ResultActivity"></activity>
+        <activity android:name=".retrofitokhttp.RetrofitActivity"></activity>
 
         <service android:name="com.androidstudy.phone.PhoneWiretap"></service>
         <service android:name="com.androidstudy.service.MainService"></service>

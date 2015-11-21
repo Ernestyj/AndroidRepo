@@ -31,6 +31,7 @@ import com.androidstudy.phone.Dial;
 import com.androidstudy.phone.PhoneWiretap;
 import com.androidstudy.phone.SMS;
 import com.androidstudy.qrcode.activity.CaptureActivity;
+import com.androidstudy.retrofitokhttp.RetrofitActivity;
 import com.androidstudy.service.BeginRemoteServiceAty;
 import com.androidstudy.service.BeginServiceAty;
 import com.androidstudy.ui.MyListView;
@@ -159,6 +160,9 @@ public class MainListActivity extends ListActivity{
 					break;
 				case 31:
 					startActivity(new Intent(getApplicationContext(), CaptureActivity.class));
+					break;
+				case 32:
+					startActivity(new Intent(getApplicationContext(), RetrofitActivity.class));
 					break;
 
 				default:
