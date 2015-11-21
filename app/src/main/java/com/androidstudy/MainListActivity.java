@@ -30,6 +30,7 @@ import com.androidstudy.phone.Contact;
 import com.androidstudy.phone.Dial;
 import com.androidstudy.phone.PhoneWiretap;
 import com.androidstudy.phone.SMS;
+import com.androidstudy.qrcode.activity.CaptureActivity;
 import com.androidstudy.service.BeginRemoteServiceAty;
 import com.androidstudy.service.BeginServiceAty;
 import com.androidstudy.ui.MyListView;
@@ -155,6 +156,9 @@ public class MainListActivity extends ListActivity{
 					break;
 				case 30:
 					startActivity(new Intent(getApplicationContext(), AudioRecorderAty.class));
+					break;
+				case 31:
+					startActivity(new Intent(getApplicationContext(), CaptureActivity.class));
 					break;
 
 				default:
