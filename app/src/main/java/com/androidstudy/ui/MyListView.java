@@ -49,7 +49,7 @@ public class MyListView extends Activity{
 //		String[] textArray = {"F1","F2","F3","F4","F5"};
 //		mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, textArray);
 		//3. SimpleAdapter
-		// Test data
+		// TODO Test data
 		List<Map<String, Object>> data = new ArrayList<Map<String,Object>>();
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("name", "N1");
@@ -80,6 +80,7 @@ public class MyListView extends Activity{
 }
 
 /**MyAdapter extends BaseAdapter(Controller：Adpter)
+ * TODO 继承BaseAdapter，可以使得ListView中显示按钮（因为SimpleAdapter不能映射按钮控件）
  * 此部分Controller耦合了Model与View，即把Model与View绑定起来
  * 注意：若将BaseAdapter作为Activity内部类，将更方便获取待绑定数据(Model：ex. Person)及视图(View：ex. ListView)
  * @author Eugene
